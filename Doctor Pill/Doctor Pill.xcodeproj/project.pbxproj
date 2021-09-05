@@ -11,6 +11,11 @@
 		5B836F9D26E15C430061C924 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B836F9C26E15C430061C924 /* ContentView.swift */; };
 		5B836F9F26E15C440061C924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B836F9E26E15C440061C924 /* Assets.xcassets */; };
 		5B836FA226E15C440061C924 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B836FA126E15C440061C924 /* Preview Assets.xcassets */; };
+		5BEAC25E26E54A7100034DE6 /* QuandoIngerirModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC25D26E54A7100034DE6 /* QuandoIngerirModel.swift */; };
+		5BEAC26026E54CAB00034DE6 /* RemedioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC25F26E54CAB00034DE6 /* RemedioModel.swift */; };
+		5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */; };
+		5BEAC26426E5512600034DE6 /* TratamentosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26326E5512600034DE6 /* TratamentosManager.swift */; };
+		5BEAC26626E551AF00034DE6 /* DiaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26526E551AF00034DE6 /* DiaManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		5B836F9E26E15C440061C924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B836FA126E15C440061C924 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B836FA326E15C440061C924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BEAC25D26E54A7100034DE6 /* QuandoIngerirModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuandoIngerirModel.swift; sourceTree = "<group>"; };
+		5BEAC25F26E54CAB00034DE6 /* RemedioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedioModel.swift; sourceTree = "<group>"; };
+		5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamentoModel.swift; sourceTree = "<group>"; };
+		5BEAC26326E5512600034DE6 /* TratamentosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamentosManager.swift; sourceTree = "<group>"; };
+		5BEAC26526E551AF00034DE6 /* DiaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +62,9 @@
 		5B836F9926E15C430061C924 /* Doctor Pill */ = {
 			isa = PBXGroup;
 			children = (
+				5BEAC25C26E54A4800034DE6 /* View Model */,
+				5BEAC25B26E54A4100034DE6 /* View */,
+				5BEAC25A26E54A3800034DE6 /* Model */,
 				5B836F9A26E15C430061C924 /* Doctor_PillApp.swift */,
 				5B836F9C26E15C430061C924 /* ContentView.swift */,
 				5B836F9E26E15C440061C924 /* Assets.xcassets */,
@@ -67,6 +80,32 @@
 				5B836FA126E15C440061C924 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5BEAC25A26E54A3800034DE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BEAC25D26E54A7100034DE6 /* QuandoIngerirModel.swift */,
+				5BEAC25F26E54CAB00034DE6 /* RemedioModel.swift */,
+				5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BEAC25B26E54A4100034DE6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5BEAC25C26E54A4800034DE6 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				5BEAC26326E5512600034DE6 /* TratamentosManager.swift */,
+				5BEAC26526E551AF00034DE6 /* DiaManager.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BEAC26426E5512600034DE6 /* TratamentosManager.swift in Sources */,
+				5BEAC25E26E54A7100034DE6 /* QuandoIngerirModel.swift in Sources */,
 				5B836F9D26E15C430061C924 /* ContentView.swift in Sources */,
 				5B836F9B26E15C430061C924 /* Doctor_PillApp.swift in Sources */,
+				5BEAC26026E54CAB00034DE6 /* RemedioModel.swift in Sources */,
+				5BEAC26626E551AF00034DE6 /* DiaManager.swift in Sources */,
+				5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
