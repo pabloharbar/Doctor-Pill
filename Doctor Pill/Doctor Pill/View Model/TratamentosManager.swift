@@ -16,5 +16,13 @@ class TratamentoManager: ObservableObject {
         self.tratamentos = []
     }
     
+    func adicionarTratamento(tratamento: Tratamento) {
+        tratamentos.append(tratamento)
+    }
     
+    func removerTratamentos(tratamento: Tratamento) {
+        tratamentos.removeAll(where: { tratamentoLista in
+            return tratamento.id == tratamentoLista.id
+        })
+    }
 }
