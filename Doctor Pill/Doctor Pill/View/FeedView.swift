@@ -9,32 +9,38 @@ import SwiftUI
 
 struct FeedView: View {
     @State var sheetPresented = false
+    @State private var recognizedText = "Tap button to start scanning"
     
     var body: some View {
-        VStack {
-            HStack {
-                Button(action: {
+        NavigationView {
+            VStack {
+                HStack {
+                   
+                        
                     
-                }, label: {
-                    Image(systemName: "doc.text.viewfinder")
-                        .font(.system(size: 24))
-                        .foregroundColor(.gray)
-                })
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "doc.text.viewfinder")
+                            .font(.system(size: 24))
+                            .foregroundColor(.gray)
+                    })
+                    Spacer()
+                    Button(action: {
+                        sheetPresented.toggle()
+                    }, label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 24))
+                            .foregroundColor(.gray)
+                    })
+                }
+                .padding(.horizontal)
                 Spacer()
-                Button(action: {
-                    sheetPresented.toggle()
-                }, label: {
-                    Image(systemName: "plus")
-                        .font(.system(size: 24))
-                        .foregroundColor(.gray)
-                })
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             }
-            .padding(.horizontal)
-            Spacer()
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            .sheet(isPresented: $sheetPresented) {
+                RegisterView()
         }
-        .sheet(isPresented: $sheetPresented) {
-            RegisterView()
         }
     }
 }
