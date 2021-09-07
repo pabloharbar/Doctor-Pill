@@ -15,16 +15,36 @@ struct FeedView: View {
         NavigationView {
             VStack {
                 HStack {
-                   
+                    NavigationLink(
+                        destination: ZStack {
+                                ScanViewController(recognizedText: $recognizedText)
+                                    .border(Color.red)
+
+                                Text(recognizedText)
+                                    .padding()
+                                    .offset(y: 250)
+
+                                Image(systemName: "plus")
+                                    .font(.title2)
+                                    .foregroundColor(.blue.opacity(0.75))
+                                    .offset(y: 55)
+                        }
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true),
+                        label: {
+                            Image(systemName: "doc.text.viewfinder")
+                                .font(.system(size: 24))
+                                .foregroundColor(.gray)
+                        })
                         
                     
-                    Button(action: {
-                        
-                    }, label: {
-                        Image(systemName: "doc.text.viewfinder")
-                            .font(.system(size: 24))
-                            .foregroundColor(.gray)
-                    })
+//                    Button(action: {
+//
+//                    }, label: {
+//                        Image(systemName: "doc.text.viewfinder")
+//                            .font(.system(size: 24))
+//                            .foregroundColor(.gray)
+//                    })
                     Spacer()
                     Button(action: {
                         sheetPresented.toggle()

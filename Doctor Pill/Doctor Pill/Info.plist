@@ -25,6 +25,8 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need to use the camera to scan documents</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchScreen</key>
