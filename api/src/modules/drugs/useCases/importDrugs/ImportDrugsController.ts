@@ -15,6 +15,11 @@ class ImportDrugsContoller {
       '../../../..',
       'utils/lista-de-medicamentos-similares-intercambiaveis-teste.csv'
     )
+    /* const csvPath = path.resolve(
+      __dirname,
+      '../../../..',
+      'utils/lista-de-medicamentos-similares-intercambiaveis v3.csv'
+    ) */
 
     await importDrugsUseCase.execute(csvPath)
 
