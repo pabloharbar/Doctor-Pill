@@ -45,3 +45,5 @@ class Drug {
     }
   }
 }
+
+export { Drug }
