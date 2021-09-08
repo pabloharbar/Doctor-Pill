@@ -36,12 +36,16 @@ class DrugsRepository implements IDrugsRepository {
     return drug
   }
 
-  async findByName(name: string): Promise<Drug[]> {
-    const drugs = await this.repository.find({
+  async findByNameAndConcentration(
+    name: string,
+    concentration: string
+  ): Promise<Drug> {
+    const drug = await this.repository.findOne({
       name,
+      concentration,
     })
 
-    return drugs
+    return drug
   }
 
   async findById(id: string): Promise<Drug> {
@@ -51,3 +55,5 @@ class DrugsRepository implements IDrugsRepository {
     return drug
   }
 }
+
+export { DrugsRepository }

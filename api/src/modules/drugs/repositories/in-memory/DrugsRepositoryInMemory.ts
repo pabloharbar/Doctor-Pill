@@ -32,10 +32,15 @@ class DrugsRepositoryInMemory implements IDrugsRepository {
     return drug
   }
 
-  async findByName(name: string): Promise<Drug[]> {
-    const drugs = this.drugs.filter((drug) => drug.name === name)
+  async findByNameAndConcentration(
+    name: string,
+    concentration: string
+  ): Promise<Drug> {
+    const drug = this.drugs.find(
+      (drug) => drug.name === name && drug.concentration === concentration
+    )
 
-    return drugs
+    return drug
   }
 
   async findById(id: string): Promise<Drug> {
