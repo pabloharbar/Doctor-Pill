@@ -2,8 +2,8 @@
   "type": "postgres",
   "host": "localhost",
   "username": "docker",
-  "password": "ignite",
-  "database": "rentx",
+  "password": "drpill",
+  "database": "drpill",
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "entities": ["./src/modules/**/entities/*.ts"],
   "cli": {
