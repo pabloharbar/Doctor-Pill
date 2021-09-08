@@ -13,7 +13,7 @@ class DrugsRepositoryInMemory implements IDrugsRepository {
     shape,
     concentration,
     inclusion_date,
-    similarDrugs,
+    reference_drug_id,
   }: ICreateDrugDTO): Promise<Drug> {
     const drug = new Drug()
 
@@ -24,7 +24,7 @@ class DrugsRepositoryInMemory implements IDrugsRepository {
       shape,
       concentration,
       inclusion_date,
-      similarDrugs,
+      reference_drug_id,
     })
 
     this.drugs.push(drug)

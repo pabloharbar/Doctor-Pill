@@ -2,11 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
 } from 'typeorm'
 import { v4 as uuidV4 } from 'uuid'
+
+import { ReferenceDrug } from './ReferenceDrug'
 
 @Entity('drugs')
 class Drug {
@@ -28,13 +30,12 @@ class Drug {
   @Column()
   inclusion_date: Date
 
-  @ManyToMany(() => Drug)
-  @JoinTable({
-    name: 'similar_drugs',
-    joinColumns: [{ name: 'reference_drug_id' }],
-    inverseJoinColumns: [{ name: 'similar_drug_id' }],
-  })
-  similarDrugs: Drug[]
+  @ManyToOne(() => ReferenceDrug)
+  @JoinColumn({ name: 'reference_drug_id' })
+  referenceDrug: ReferenceDrug
+
+  @Column()
+  reference_drug_id: string
 
   @CreateDateColumn()
   created_at: Date

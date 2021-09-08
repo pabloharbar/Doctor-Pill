@@ -1,5 +1,3 @@
-import { Drug } from '@modules/drugs/infra/typeorm/entities/Drug'
-
 interface ICreateDrugDTO {
   id?: string
   name: string
@@ -7,7 +5,7 @@ interface ICreateDrugDTO {
   shape: string
   concentration: string
   inclusion_date: Date
-  similarDrugs?: Drug[]
+  reference_drug_id: string
 }
 
 export { ICreateDrugDTO }

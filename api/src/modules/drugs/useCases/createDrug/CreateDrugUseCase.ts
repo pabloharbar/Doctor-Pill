@@ -10,6 +10,7 @@ interface IRequest {
   shape: string
   concentration: string
   inclusion_date: Date
+  reference_drug_id: string
 }
 
 @injectable()
@@ -25,6 +26,7 @@ class CreateDrugUseCase {
     shape,
     concentration,
     inclusion_date,
+    reference_drug_id,
   }: IRequest): Promise<Drug> {
     const drugAlreadyExists =
       await this.drugsRepository.findByNameAndConcentration(name, concentration)
@@ -39,6 +41,7 @@ class CreateDrugUseCase {
       shape,
       concentration,
       inclusion_date,
+      reference_drug_id,
     })
 
     return drug

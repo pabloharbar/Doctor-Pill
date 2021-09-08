@@ -36,6 +36,20 @@ export class CreateDrugs1631121776849 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
+          {
+            name: 'reference_drug_id',
+            type: 'uuid',
+          },
+        ],
+        foreignKeys: [
+          {
+            name: 'FK_REFERENCE_DRUG',
+            referencedTableName: 'reference_drugs',
+            referencedColumnNames: ['id'],
+            columnNames: ['reference_drug_id'],
+            onDelete: 'SET NULL',
+            onUpdate: 'SET NULL',
+          },
         ],
       })
     )

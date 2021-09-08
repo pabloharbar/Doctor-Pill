@@ -19,7 +19,7 @@ class DrugsRepository implements IDrugsRepository {
     shape,
     concentration,
     inclusion_date,
-    similarDrugs,
+    reference_drug_id,
   }: ICreateDrugDTO): Promise<Drug> {
     const drug = this.repository.create({
       id,
@@ -28,7 +28,7 @@ class DrugsRepository implements IDrugsRepository {
       shape,
       concentration,
       inclusion_date,
-      similarDrugs,
+      reference_drug_id,
     })
 
     await this.repository.save(drug)
@@ -49,9 +49,8 @@ class DrugsRepository implements IDrugsRepository {
   }
 
   async findById(id: string): Promise<Drug> {
-    const drug = await this.repository.findOne(id, {
-      relations: ['similarDrugs'],
-    })
+    const drug = await this.repository.findOne(id)
+
     return drug
   }
 }
