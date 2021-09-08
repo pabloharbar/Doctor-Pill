@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 class DiaManager: ObservableObject {
-    @Published @AppStorage("remediosTomados") var remediosTomados: [Tratamento: [(Remedio,DateComponents)]]
+//    @Published @AppStorage("remediosTomados") var remediosTomados: [Tratamento: [(Remedio,DateComponents)]]
+    @Published var remediosTomados: [Tratamento: [(Remedio,DateComponents)]]
 
     init() {
         //Pega do UserDefaults
