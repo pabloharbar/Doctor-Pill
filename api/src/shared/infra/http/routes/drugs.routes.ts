@@ -1,6 +1,5 @@
-import { Request, Response, Router } from 'express'
+import { Router } from 'express'
 
-import { CreateDrugController } from '@modules/drugs/useCases/createDrug/CreateDrugController'
 import { ImportDrugsContoller } from '@modules/drugs/useCases/importDrugs/ImportDrugsController'
 import { ListReferenceDrugsController } from '@modules/drugs/useCases/listReferenceDrugs/ListReferenceDrugsController'
 
