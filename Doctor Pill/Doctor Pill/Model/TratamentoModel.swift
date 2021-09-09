@@ -28,4 +28,13 @@ struct Tratamento: Equatable, Hashable {
         hasher.combine(id)
     }
     
+    func contemRemedio(_ remedio: Remedio) -> Bool {
+        for remedioTratamento in remedios {
+            if remedioTratamento == remedio {
+                return true
+            }
+        }
+
+        return false
+    }
 }

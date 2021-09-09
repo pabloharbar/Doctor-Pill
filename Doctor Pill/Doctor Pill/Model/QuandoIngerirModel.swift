@@ -17,7 +17,7 @@ enum DiasDaSemana: CaseIterable {
     case domingo
 }
 
-struct QuandoIngerirModel {
+struct QuandoIngerirModel: Equatable {
     let horarioReferencia: DateComponents
     let periodicidade: Int
     let diasDaSemana: [DiasDaSemana]
@@ -26,5 +26,11 @@ struct QuandoIngerirModel {
         self.horarioReferencia = DateComponents(hour: hora, minute: minutos)
         self.periodicidade = periodicidade
         self.diasDaSemana = diasDaSemana
+    }
+
+    static func == (lhs: QuandoIngerirModel, rhs: QuandoIngerirModel) -> Bool {
+        return lhs.horarioReferencia == rhs.horarioReferencia &&
+            lhs.periodicidade == rhs.periodicidade &&
+            lhs.diasDaSemana == rhs.diasDaSemana
     }
 }

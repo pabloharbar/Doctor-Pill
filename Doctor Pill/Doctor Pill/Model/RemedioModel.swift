@@ -19,7 +19,7 @@ enum Instrucoes {
     case naoIngerirAlcool
 }
 
-struct Remedio {
+struct Remedio: Equatable {
     let nome: String
     let quandoIngerir: QuandoIngerirModel
     let foto: UIImage?
@@ -37,4 +37,10 @@ struct Remedio {
         
     }
     
+    static func == (lhs: Remedio, rhs: Remedio) -> Bool {
+        return lhs.nome == rhs.nome &&
+            lhs.quandoIngerir == rhs.quandoIngerir &&
+            lhs.dosagem == rhs.dosagem &&
+            lhs.instrucoes == rhs.instrucoes
+    }
 }
