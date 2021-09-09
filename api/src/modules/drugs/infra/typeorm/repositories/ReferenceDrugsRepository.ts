@@ -39,6 +39,25 @@ class ReferenceDrugsRepository implements IReferenceDrugsRepository {
 
     return referenceDrug
   }
+
+  async findByNameOrSimilarDrug(drugName: string): Promise<ReferenceDrug> {
+    const referenceDrug = await this.repository.findOne({
+      join: {
+        alias: 'referenceDrug',
+        innerJoin: {
+          drugs: 'referenceDrug.drugs',
+        },
+      },
+      where: (querryBuilder) => {
+        querryBuilder
+          .where('referenceDrug.name = :name', { name: drugName })
+          .orWhere('drugs.name = :drugName', { drugName })
+          .leftJoinAndSelect('referenceDrug.drugs', 'drug')
+      },
+    })
+
+    return referenceDrug
+  }
 }
 
 export { ReferenceDrugsRepository }

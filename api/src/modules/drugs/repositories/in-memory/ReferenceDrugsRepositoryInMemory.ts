@@ -31,6 +31,18 @@ class ReferenceDrugsRepositoryInMemory implements IReferenceDrugsRepository {
   async findById(id: string): Promise<ReferenceDrug> {
     return this.referenceDrugs.find((drug) => drug.id === id)
   }
+
+  async findByNameOrSimilarDrug(drugName: string): Promise<ReferenceDrug> {
+    const referenceDrug = this.findByName(drugName)
+
+    if (referenceDrug) {
+      return referenceDrug
+    }
+
+    return this.referenceDrugs.find((referenceDrug) =>
+      referenceDrug.drugs.find((drug) => drug.name === drugName)
+    )
+  }
 }
 
 export { ReferenceDrugsRepositoryInMemory }

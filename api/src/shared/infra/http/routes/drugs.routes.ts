@@ -2,17 +2,14 @@ import { Request, Response, Router } from 'express'
 
 import { CreateDrugController } from '@modules/drugs/useCases/createDrug/CreateDrugController'
 import { ImportDrugsContoller } from '@modules/drugs/useCases/importDrugs/ImportDrugsController'
+import { ListReferenceDrugsController } from '@modules/drugs/useCases/listReferenceDrugs/ListReferenceDrugsController'
 
 const drugsRoutes = Router()
 
-const createDrugController = new CreateDrugController()
 const importDrugsController = new ImportDrugsContoller()
+const listReferenceDrugsController = new ListReferenceDrugsController()
 
-drugsRoutes.get('/', (req: Request, res: Response): Response => {
-  return res.send("It's up!")
-})
-
-drugsRoutes.post('/', createDrugController.handle)
+drugsRoutes.get('/', listReferenceDrugsController.handle)
 drugsRoutes.get('/load-csv', importDrugsController.handle)
 
 export { drugsRoutes }
