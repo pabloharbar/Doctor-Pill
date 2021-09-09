@@ -33,12 +33,8 @@ class LiveTextControllerCoordinator: NSObject, TextFoundDelegate {
     init(recognizedText: Binding<String>) {
         self._recognizedText = recognizedText
     }
-
-    func textWasFound(result: Bool) {
-//        print("textWasFound \(result)")
-    }
     
-    func foundText(result: String) {
+    func foundText(text result: String) {
         recognizedText = result
     }
 }

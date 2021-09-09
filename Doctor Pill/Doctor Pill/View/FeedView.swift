@@ -16,21 +16,8 @@ struct FeedView: View {
             VStack {
                 HStack {
                     NavigationLink(
-                        destination: ZStack {
-                                ScanViewController(recognizedText: $recognizedText)
-                                    .border(Color.red)
-
-                                Text(recognizedText)
-                                    .padding()
-                                    .offset(y: 250)
-
-                                Image(systemName: "plus")
-                                    .font(.title2)
-                                    .foregroundColor(.blue.opacity(0.75))
-                                    .offset(y: 55)
-                        }
-                        .navigationBarTitle("")
-                        .navigationBarHidden(true),
+                        destination:
+                                ScanView(recognizedText: $recognizedText),
                         label: {
                             Image(systemName: "doc.text.viewfinder")
                                 .font(.system(size: 24))
@@ -58,11 +45,16 @@ struct FeedView: View {
                 Spacer()
                 Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             }
+            .navigationBarHidden(true)
             .sheet(isPresented: $sheetPresented) {
                 RegisterView()
         }
+            
         }
+        
     }
+    
+    
 }
 
 struct FeedView_Previews: PreviewProvider {
