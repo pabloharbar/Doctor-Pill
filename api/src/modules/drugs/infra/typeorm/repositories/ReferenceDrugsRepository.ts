@@ -50,8 +50,12 @@ class ReferenceDrugsRepository implements IReferenceDrugsRepository {
       },
       where: (querryBuilder) => {
         querryBuilder
-          .where('referenceDrug.name = :name', { name: drugName })
-          .orWhere('drugs.name = :drugName', { drugName })
+          .where('LOWER(referenceDrug.name) = :name', {
+            name: drugName.toLocaleLowerCase(),
+          })
+          .orWhere('LOWER(drugs.name) = :drugName', {
+            drugName: drugName.toLocaleLowerCase(),
+          })
           .leftJoinAndSelect('referenceDrug.drugs', 'drug')
       },
     })
