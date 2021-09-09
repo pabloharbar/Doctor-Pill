@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 
+import { AppError } from '@shared/errors/AppError'
+
 import { ListReferenceDrugsUseCase } from './ListReferenceDrugsUseCase'
 
 class ListReferenceDrugsController {
@@ -10,11 +12,13 @@ class ListReferenceDrugsController {
       ListReferenceDrugsUseCase
     )
 
-    const {
-      name: drugName,
-      active_principle,
-      drugs,
-    } = await listReferenceDrugsUseCase.execute(name as string)
+    const drugExists = await listReferenceDrugsUseCase.execute(name as string)
+
+    if (!drugExists) {
+      throw new AppError("Drug doesn't exists")
+    }
+
+    const { name: drugName, active_principle, drugs } = drugExists
 
     const uniqueDrugs = Array.from(new Set(drugs.flatMap((drug) => drug.name)))
 
