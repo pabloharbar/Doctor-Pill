@@ -10,16 +10,16 @@ class ImportDrugsContoller {
   async handle(req: Request, res: Response): Promise<Response> {
     const importDrugsUseCase = container.resolve(ImportDrugsUseCase)
 
-    const csvPath = path.resolve(
-      __dirname,
-      '../../../..',
-      'utils/lista-de-medicamentos-similares-intercambiaveis-teste.csv'
-    )
     /* const csvPath = path.resolve(
       __dirname,
       '../../../..',
-      'utils/lista-de-medicamentos-similares-intercambiaveis v3.csv'
+      'utils/lista-de-medicamentos-similares-intercambiaveis-teste.csv'
     ) */
+    const csvPath = path.resolve(
+      __dirname,
+      '../../../..',
+      'utils/lista-de-medicamentos-similares-intercambiaveis v3.csv'
+    )
 
     await importDrugsUseCase.execute(csvPath)
 
