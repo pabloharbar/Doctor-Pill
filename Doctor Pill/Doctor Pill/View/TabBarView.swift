@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State var selectedView = 1 {
-        willSet {
-            if newValue == 2 {
-                isCameraActive = true
-            }
-        }
-    }
+    @ObservedObject var tabBarManager = TabBarManager(initialIndex: 1, customItemIndex: 2)
+    
     @State var isCameraActive = false
     @State var recognizedText = ""
     
     var body: some View {
-        TabView(selection: $selectedView) {
+        TabView(selection: $tabBarManager.itemSelected) {
             FeedView()
                 .tabItem {
                     Label("Minha Rotina", systemImage: "calendar")
@@ -28,12 +23,7 @@ struct TabBarView: View {
             
             PreScanView()
                 .tabItem {
-                    Button(action: {
-                        isCameraActive = true
-                    }, label: {
-                        Label("Escaner", systemImage: "camera.fill")
-                    })
-                    
+                    Label("Escaner", systemImage: "camera.fill")
                 }
                 .tag(2)
             
@@ -42,11 +32,11 @@ struct TabBarView: View {
                     Label("Histórico", systemImage: "clock.arrow.circlepath")
                 }
                 .tag(3)
-            
         }
-        .fullScreenCover(isPresented: $isCameraActive, onDismiss: { isCameraActive = true }, content: {
+        .sheet(isPresented: $tabBarManager.isCustomItemSelected, onDismiss: {
+            tabBarManager.itemSelected = 1
+        }, content: {
             ScanView(recognizedText: $recognizedText)
-                
         })
     }
 }
