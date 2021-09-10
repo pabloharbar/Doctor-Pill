@@ -11,7 +11,7 @@ import SwiftUI
 struct Doctor_PillApp: App {
     var body: some Scene {
         WindowGroup {
-            FeedView()
+            TabBarView()
         }
     }
 }

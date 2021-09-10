@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DiasDaSemana: CaseIterable {
+enum DiasDaSemana: Int, CaseIterable, Codable {
     case segunda
     case terca
     case quarta
@@ -17,7 +17,7 @@ enum DiasDaSemana: CaseIterable {
     case domingo
 }
 
-struct QuandoIngerirModel: Equatable {
+struct QuandoIngerirModel: Equatable, Codable {
     let horarioReferencia: DateComponents
     let periodicidade: Int
     let diasDaSemana: [DiasDaSemana]

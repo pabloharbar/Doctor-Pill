@@ -8,33 +8,34 @@
 import Foundation
 import UIKit
 
-enum Formato {
+enum Formato: Int, Codable {
     case pastilha
     case comprimido
 }
 
-enum Instrucoes {
+enum Instrucoes: Int, Codable {
     case comerAntes
     case jejum
     case naoIngerirAlcool
 }
 
-struct Remedio: Equatable {
+struct Remedio: Equatable, Codable {
     let nome: String
     let quandoIngerir: QuandoIngerirModel
-    let foto: UIImage?
+    let foto: Data?
     let dosagem: Int
     let formato: Formato
     let instrucoes: [Instrucoes]
+    let id: UUID
     
-    init(nome: String, quandoIngerir: QuandoIngerirModel, foto: UIImage?, dosagem: Int, formato: Formato, instrucoes: [Instrucoes]) {
+    init(nome: String, quandoIngerir: QuandoIngerirModel, foto: UIImage?, dosagem: Int, formato: Formato, instrucoes: [Instrucoes], id: UUID = UUID()) {
         self.nome = nome
         self.quandoIngerir = quandoIngerir
         self.dosagem = dosagem
         self.formato = formato
         self.instrucoes = instrucoes
-        self.foto = foto
-        
+        self.foto = foto?.pngData()
+        self.id = id
     }
     
     static func == (lhs: Remedio, rhs: Remedio) -> Bool {
