@@ -21,8 +21,9 @@ struct VisualEffectView: UIViewRepresentable {
 
 struct ScanView: View {
     @Binding var recognizedText: String
-    
     @State var hasFoundCorrect = false
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let apiWrapper = APIWrapper()
     
@@ -41,6 +42,22 @@ struct ScanView: View {
         ZStack {
             ScanViewController(recognizedText: $recognizedText)
             
+            VStack {
+                HStack {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Button")
+                        Image(systemName: "xmark")
+                    })
+                    .padding()
+                    Spacer()
+                }
+                .padding(.vertical)
+                .background(VisualEffectView(effect: UIBlurEffect(style: .systemMaterial)))
+                Spacer()
+            }
+            .padding()
             Text(recognizedText)
                 .padding()
                 .offset(y: 250)

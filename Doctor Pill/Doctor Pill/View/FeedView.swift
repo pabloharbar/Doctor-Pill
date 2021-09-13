@@ -17,7 +17,7 @@ struct FeedView: View {
                 HStack {
                     NavigationLink(
                         destination:
-                                ScanView(recognizedText: $recognizedText),
+                            ScanView(recognizedText: $recognizedText).environmentObject(TabBarManager(customItemIndex: 3)),
                         label: {
                             Image(systemName: "doc.text.viewfinder")
                                 .font(.system(size: 24))

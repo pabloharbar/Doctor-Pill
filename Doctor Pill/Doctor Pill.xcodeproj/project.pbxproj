@@ -19,6 +19,7 @@
 		5B836F9B26E15C430061C924 /* Doctor_PillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B836F9A26E15C430061C924 /* Doctor_PillApp.swift */; };
 		5B836F9F26E15C440061C924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B836F9E26E15C440061C924 /* Assets.xcassets */; };
 		5B836FA226E15C440061C924 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B836FA126E15C440061C924 /* Preview Assets.xcassets */; };
+		5B9FD5EF26EFD154004B10CC /* ScannerCheckModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FD5EE26EFD154004B10CC /* ScannerCheckModalView.swift */; };
 		5BCF3F2D26EBCD0B00CD3B48 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF3F2C26EBCD0B00CD3B48 /* TabBarView.swift */; };
 		5BCF3F2F26EBCEBF00CD3B48 /* TreatmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF3F2E26EBCEBF00CD3B48 /* TreatmentsView.swift */; };
 		5BCF3F3126EBD0F300CD3B48 /* PreScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF3F3026EBD0F300CD3B48 /* PreScanView.swift */; };
@@ -45,6 +46,7 @@
 		5B836F9E26E15C440061C924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B836FA126E15C440061C924 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B836FA326E15C440061C924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B9FD5EE26EFD154004B10CC /* ScannerCheckModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerCheckModalView.swift; sourceTree = "<group>"; };
 		5BCF3F2C26EBCD0B00CD3B48 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		5BCF3F2E26EBCEBF00CD3B48 /* TreatmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentsView.swift; sourceTree = "<group>"; };
 		5BCF3F3026EBD0F300CD3B48 /* PreScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreScanView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		5B9FD5EB26EFD128004B10CC /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				5B9FD5EE26EFD154004B10CC /* ScannerCheckModalView.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
 		5BEAC25A26E54A3800034DE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +147,7 @@
 		5BEAC25B26E54A4100034DE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5B9FD5EB26EFD128004B10CC /* Modal */,
 				5B7FD0D826E6CF6600ECCE7B /* FeedView.swift */,
 				5B7FD0DA26E6D23000ECCE7B /* RegisterView.swift */,
 				5B79182426E6DB6200720745 /* ScanView.swift */,
@@ -231,6 +242,7 @@
 			files = (
 				5B3D07E026EA922300A2BA24 /* UserDefaultsWrapper.swift in Sources */,
 				5B7FD0DB26E6D23000ECCE7B /* RegisterView.swift in Sources */,
+				5B9FD5EF26EFD154004B10CC /* ScannerCheckModalView.swift in Sources */,
 				5BCF3F2D26EBCD0B00CD3B48 /* TabBarView.swift in Sources */,
 				5B7FD0D926E6CF6600ECCE7B /* FeedView.swift in Sources */,
 				5BCF3F2F26EBCEBF00CD3B48 /* TreatmentsView.swift in Sources */,
