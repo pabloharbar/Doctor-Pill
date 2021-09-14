@@ -36,6 +36,7 @@
 		5BEAC26626E551AF00034DE6 /* DiaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26526E551AF00034DE6 /* DiaManager.swift */; };
 		AF4C814526EBD168006C92A2 /* PillKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C814426EBD168006C92A2 /* PillKeyboard.swift */; };
 		AF4C814726EC3903006C92A2 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C814626EC3903006C92A2 /* KeyboardView.swift */; };
+		AFCC09C426F14DAF00EF4BEA /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC09C326F14DAF00EF4BEA /* ListTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5BEAC26526E551AF00034DE6 /* DiaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaManager.swift; sourceTree = "<group>"; };
 		AF4C814426EBD168006C92A2 /* PillKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillKeyboard.swift; sourceTree = "<group>"; };
 		AF4C814626EC3903006C92A2 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		AFCC09C326F14DAF00EF4BEA /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				5B14263826F1295C00C50851 /* FormatoView.swift */,
 				5B14263C26F1313A00C50851 /* HistoricoView.swift */,
 				5B14263E26F135FE00C50851 /* CardHistoricoView.swift */,
+				AFCC09C326F14DAF00EF4BEA /* ListTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */,
 				5B14263D26F1313A00C50851 /* HistoricoView.swift in Sources */,
 				5B3D07E226EA9ABB00A2BA24 /* RemediosTomadosModel.swift in Sources */,
+				AFCC09C426F14DAF00EF4BEA /* ListTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +429,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Doctor Pill/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = 3GTJZ8KSTX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Doctor Pill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -447,7 +451,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Doctor Pill/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = 3GTJZ8KSTX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Doctor Pill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
