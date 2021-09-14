@@ -32,6 +32,8 @@
 		5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */; };
 		5BEAC26426E5512600034DE6 /* TratamentosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26326E5512600034DE6 /* TratamentosManager.swift */; };
 		5BEAC26626E551AF00034DE6 /* DiaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26526E551AF00034DE6 /* DiaManager.swift */; };
+		AF4C814526EBD168006C92A2 /* PillKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C814426EBD168006C92A2 /* PillKeyboard.swift */; };
+		AF4C814726EC3903006C92A2 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C814626EC3903006C92A2 /* KeyboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamentoModel.swift; sourceTree = "<group>"; };
 		5BEAC26326E5512600034DE6 /* TratamentosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamentosManager.swift; sourceTree = "<group>"; };
 		5BEAC26526E551AF00034DE6 /* DiaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaManager.swift; sourceTree = "<group>"; };
+		AF4C814426EBD168006C92A2 /* PillKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillKeyboard.swift; sourceTree = "<group>"; };
+		AF4C814626EC3903006C92A2 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,8 @@
 				5B7FD0D826E6CF6600ECCE7B /* FeedView.swift */,
 				5B7FD0DA26E6D23000ECCE7B /* RegisterView.swift */,
 				5B79182426E6DB6200720745 /* ScanView.swift */,
+				AF4C814426EBD168006C92A2 /* PillKeyboard.swift */,
+				AF4C814626EC3903006C92A2 /* KeyboardView.swift */,
 				5BCF3F2C26EBCD0B00CD3B48 /* TabBarView.swift */,
 				5BCF3F2E26EBCEBF00CD3B48 /* TreatmentsView.swift */,
 				5BCF3F3026EBD0F300CD3B48 /* PreScanView.swift */,
@@ -277,6 +283,8 @@
 				5BCF3F3326EBDA3500CD3B48 /* TabBarManager.swift in Sources */,
 				5B79182526E6DB6200720745 /* ScanView.swift in Sources */,
 				5BEAC26626E551AF00034DE6 /* DiaManager.swift in Sources */,
+				AF4C814526EBD168006C92A2 /* PillKeyboard.swift in Sources */,
+				AF4C814726EC3903006C92A2 /* KeyboardView.swift in Sources */,
 				5B003ADC26F10581009948E7 /* SpeechManager.swift in Sources */,
 				5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */,
 				5B3D07E226EA9ABB00A2BA24 /* RemediosTomadosModel.swift in Sources */,
@@ -409,7 +417,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Doctor Pill/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = 3GTJZ8KSTX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Doctor Pill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -431,7 +439,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Doctor Pill/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = 3GTJZ8KSTX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Doctor Pill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
