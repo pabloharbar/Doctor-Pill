@@ -26,7 +26,7 @@ struct TabBarView: View {
                 }
                 .tag(2)
             
-            TreatmentsView()
+            HistoricoView()
                 .tabItem {
                     Label("Histórico", systemImage: "clock.arrow.circlepath")
                 }
