@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class TratamentoManager: ObservableObject {
+class TratamentosManager: ObservableObject {
     @Published var tratamentos: [Tratamento]
     
     init() {
@@ -25,4 +25,17 @@ class TratamentoManager: ObservableObject {
             return tratamento.id == tratamentoLista.id
         })
     }
+    
+    static let formatosPadroes = [
+        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Injeção", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Envelope", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Pomada", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Gotas", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Xarope", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
+        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
+    ]
+
 }
