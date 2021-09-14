@@ -24,10 +24,12 @@ struct ScanView: View {
     @Binding var recognizedText: String
     @State var scanState: ScanState = .notFound
     @State var hasFoundCorrect = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @State var scannerCardShowing = false
+    
     
     var speechManager = SpeechManager()
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let apiWrapper = APIWrapper()
     
@@ -38,6 +40,7 @@ struct ScanView: View {
             if !similars.isEmpty {
                 //É o remedio certo
                 hasFoundCorrect = true
+                scanState = .found
             }
         }
     }
@@ -51,7 +54,7 @@ struct ScanView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Text("Button")
+                        Text("Fechar")
                         Image(systemName: "xmark")
                     })
                     .padding(24)
@@ -68,12 +71,11 @@ struct ScanView: View {
             Image(systemName: "plus")
                 .font(.title2)
                 .foregroundColor(.blue.opacity(0.75))
-            if hasFoundCorrect {
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.largeTitle)
-                    .foregroundColor(.red)
-                    .offset(y: -200)
+            
+            if scannerCardShowing {
+                ScannerCheckModalView(modalShowing: $scannerCardShowing)
             }
+            
             GeometryReader { geometry in
                 VStack {
                     Spacer()
@@ -81,8 +83,12 @@ struct ScanView: View {
                         VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
                             .frame(width: geometry.size.width, height: 200)
                         Button(action: {
-                            self.speechManager.speak(text: "Olá Mundo")
-//                            speak(speech: "Continue escaneando até encontrar um remédio")
+                            if scanState != .found {
+                                self.speechManager.speak(text: scanState == .notFound ? "Continue escaneando até achar um remédio" : scanState == .notRegistered ? "Esse remédio não está cadastrado no seu App." : "")
+                            } else {
+                                scannerCardShowing = true
+                            }
+                            
                         }, label: {
                             ScanButtonView(scanState: $scanState)
                                 .foregroundColor(.black)
@@ -91,11 +97,14 @@ struct ScanView: View {
                 }
             }
         }
+        .onTapGesture {
+            scannerCardShowing = false
+        }
         .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
-//        .onChange(of: recognizedText, perform: { _ in
-//            displayResult()
-//        })
+        .onChange(of: recognizedText, perform: { _ in
+            displayResult()
+        })
     }
 }
 
