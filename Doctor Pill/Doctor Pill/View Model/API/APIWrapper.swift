@@ -10,11 +10,8 @@ import Foundation
 class APIWrapper {
     
     func fetchSimilars(recognizedText: String, completion: @escaping (Data) -> Void) {
-//        let url = URL(string: "http://177.204.221.111/similar")! //A completar
-//        var urlRequest = URLRequest(url: url)
-//        urlRequest.allHTTPHeaderFields = ["name": "aradois"]
         
-        var components = URLComponents(string: "http://177.204.221.111/similar")!
+        var components = URLComponents(string: "http://186.214.192.214/similar")!
         
         let queryItem = URLQueryItem(name: "name", value: recognizedText)
         components.queryItems = [queryItem]

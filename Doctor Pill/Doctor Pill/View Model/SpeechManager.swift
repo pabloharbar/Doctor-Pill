@@ -26,7 +26,7 @@ final class SpeechManager: NSObject {
       func speak(text: String) {
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "pt-BR")
-        utterance.rate = AVSpeechUtteranceMinimumSpeechRate
+//        utterance.rate = AVSpeechUtteranceMinimumSpeechRate
         utterance.volume = 100.0
 
         speechSynthesizer.speak(utterance)
