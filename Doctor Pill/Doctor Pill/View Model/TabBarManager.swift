@@ -7,7 +7,7 @@
 import Combine
 
 final class TabBarManager: ObservableObject {
-
+    
     /// This is the index of the item that fires a custom action
     let customActionteminidex: Int
 

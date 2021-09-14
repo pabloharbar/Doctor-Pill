@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct VisualEffectView: UIViewRepresentable {
     var effect: UIVisualEffect?
@@ -21,7 +22,10 @@ struct VisualEffectView: UIViewRepresentable {
 
 struct ScanView: View {
     @Binding var recognizedText: String
+    @State var scanState: ScanState = .notFound
     @State var hasFoundCorrect = false
+    
+    var speechManager = SpeechManager()
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -50,14 +54,13 @@ struct ScanView: View {
                         Text("Button")
                         Image(systemName: "xmark")
                     })
-                    .padding()
+                    .padding(24)
                     Spacer()
                 }
                 .padding(.vertical)
                 .background(VisualEffectView(effect: UIBlurEffect(style: .systemMaterial)))
                 Spacer()
             }
-            .padding()
             Text(recognizedText)
                 .padding()
                 .offset(y: 250)
@@ -74,16 +77,25 @@ struct ScanView: View {
             GeometryReader { geometry in
                 VStack {
                     Spacer()
-                    VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
-                        .frame(width: geometry.size.width, height: 200)
+                    ZStack {
+                        VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+                            .frame(width: geometry.size.width, height: 200)
+                        Button(action: {
+                            self.speechManager.speak(text: "Olá Mundo")
+//                            speak(speech: "Continue escaneando até encontrar um remédio")
+                        }, label: {
+                            ScanButtonView(scanState: $scanState)
+                                .foregroundColor(.black)
+                        })
+                    }
                 }
             }
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: recognizedText, perform: { _ in
-            displayResult()
-        })
+//        .onChange(of: recognizedText, perform: { _ in
+//            displayResult()
+//        })
     }
 }
 

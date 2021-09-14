@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TabBarView: View {
     @ObservedObject var tabBarManager = TabBarManager(initialIndex: 1, customItemIndex: 2)
-    @State var isCameraActive = false
     @State var recognizedText = ""
     @State var selectedTab = 1
     
@@ -37,9 +36,8 @@ struct TabBarView: View {
                          onDismiss: {
             tabBarManager.itemSelected = 1
         },
-                         content: {
-                            ScanView(recognizedText: $recognizedText)
-         
+             content: {
+                ScanView(recognizedText: $recognizedText)
         })
     }
 }
