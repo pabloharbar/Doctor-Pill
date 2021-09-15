@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DiasDaSemana: Int, CaseIterable, Codable {
+enum DiasDaSemana: Int, CaseIterable, Codable, Hashable {
     case segunda
     case terca
     case quarta
