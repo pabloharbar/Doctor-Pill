@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RegisterView: View {
-//    @Environment(\.dismiss) var dismiss
+
     @Environment(\.presentationMode) var presentationMode
-    //var state apenas para teste \/
+    @StateObject var registerManager = RegisterManager()
     @State var nomeDoRemedio = ""
     
     var body: some View {
@@ -48,13 +48,29 @@ struct RegisterView: View {
             .background(
                 LinearGradient(gradient: Gradient(colors: [Color(red: 208/255, green: 219/255, blue: 1), Color(red: 127/255, green: 155/255, blue: 251/255)]), startPoint: .bottomLeading, endPoint: .topTrailing)
             )
+//            .cornerRadius(24)
             .cornerRadius(24, corners: [.bottomLeft,.bottomRight]) //Extension
             .ignoresSafeArea()
             
-            
             Spacer()
+            
+            HStack {
+                Text("INFORMAÇÕES")
+                    .font(.system(size: 13))
+                    .foregroundColor(.gray)
+                    .padding([.leading,.top])
+                Spacer()
+            }
+            Divider()
+            List {
+                ListTextField(label: "Nome", text: $registerManager.nome)
+                ListTextField(label: "Posologia", text: $registerManager.nome)
+            }
+            ProgressView(progressState: $registerManager.progressState)
+                .padding()
+            
             Button(action: {
-                
+                registerManager.progressState += 1
             }, label: {
                 HStack {
                     Spacer()

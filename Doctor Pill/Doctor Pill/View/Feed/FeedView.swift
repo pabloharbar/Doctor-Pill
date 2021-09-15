@@ -37,7 +37,7 @@ struct FeedView: View {
                 PeriodTableView()
             }
         }
-        .sheet(isPresented: $registerSheetIsShowing, content: {
+        .fullScreenCover(isPresented: $registerSheetIsShowing, content: {
             RegisterView()
         })
     }
