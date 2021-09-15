@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct FeedView: View {
+    @State var registerSheetIsShowing = false
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 Button(action: {
-                    
+                    registerSheetIsShowing = true
                 }, label: {
                     HStack(spacing: -5) {
                         Image(systemName: "plus")
@@ -36,6 +37,9 @@ struct FeedView: View {
                 PeriodTableView()
             }
         }
+        .sheet(isPresented: $registerSheetIsShowing, content: {
+            RegisterView()
+        })
     }
     
 }

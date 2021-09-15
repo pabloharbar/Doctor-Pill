@@ -20,6 +20,7 @@
 		5B3D07DE26EA855200A2BA24 /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D07DD26EA855200A2BA24 /* APIWrapper.swift */; };
 		5B3D07E026EA922300A2BA24 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D07DF26EA922300A2BA24 /* UserDefaultsWrapper.swift */; };
 		5B3D07E226EA9ABB00A2BA24 /* RemediosTomadosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D07E126EA9ABB00A2BA24 /* RemediosTomadosModel.swift */; };
+		5B4B796526F248300093EDC5 /* CornerRadiusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B796426F248300093EDC5 /* CornerRadiusExtension.swift */; };
 		5B79182526E6DB6200720745 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B79182426E6DB6200720745 /* ScanView.swift */; };
 		5B79182826E6DD4900720745 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B79182726E6DD4900720745 /* ScanViewController.swift */; };
 		5B79182A26E6DD5C00720745 /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B79182926E6DD5C00720745 /* VisionViewController.swift */; };
@@ -56,6 +57,7 @@
 		5B3D07DD26EA855200A2BA24 /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		5B3D07DF26EA922300A2BA24 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		5B3D07E126EA9ABB00A2BA24 /* RemediosTomadosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemediosTomadosModel.swift; sourceTree = "<group>"; };
+		5B4B796426F248300093EDC5 /* CornerRadiusExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusExtension.swift; sourceTree = "<group>"; };
 		5B79182426E6DB6200720745 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		5B79182726E6DD4900720745 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		5B79182926E6DD5C00720745 /* VisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				5B003ADE26F109B3009948E7 /* SpeechManagerExtension.swift */,
+				5B4B796426F248300093EDC5 /* CornerRadiusExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -127,6 +130,23 @@
 				5B3D07DD26EA855200A2BA24 /* APIWrapper.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		5B4B796226F244650093EDC5 /* RegisterNewMedicine */ = {
+			isa = PBXGroup;
+			children = (
+				5B7FD0DA26E6D23000ECCE7B /* RegisterView.swift */,
+			);
+			path = RegisterNewMedicine;
+			sourceTree = "<group>";
+		};
+		5B4B796326F2447D0093EDC5 /* Historico */ = {
+			isa = PBXGroup;
+			children = (
+				5B14263E26F135FE00C50851 /* CardHistoricoView.swift */,
+				5B14263C26F1313A00C50851 /* HistoricoView.swift */,
+			);
+			path = Historico;
 			sourceTree = "<group>";
 		};
 		5B79182626E6DBCD00720745 /* Scanner */ = {
@@ -191,16 +211,15 @@
 		5BEAC25B26E54A4100034DE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5B4B796326F2447D0093EDC5 /* Historico */,
+				5B4B796226F244650093EDC5 /* RegisterNewMedicine */,
 				5B14264026F1499100C50851 /* Feed */,
 				5B003AE026F11A89009948E7 /* Scan */,
-				5B7FD0DA26E6D23000ECCE7B /* RegisterView.swift */,
 				AF4C814426EBD168006C92A2 /* PillKeyboard.swift */,
 				AF4C814626EC3903006C92A2 /* KeyboardView.swift */,
 				5BCF3F2C26EBCD0B00CD3B48 /* TabBarView.swift */,
 				5BCF3F3026EBD0F300CD3B48 /* PreScanView.swift */,
 				5B14263826F1295C00C50851 /* FormatoView.swift */,
-				5B14263C26F1313A00C50851 /* HistoricoView.swift */,
-				5B14263E26F135FE00C50851 /* CardHistoricoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,6 +312,7 @@
 				5B7FD0DB26E6D23000ECCE7B /* RegisterView.swift in Sources */,
 				5B9FD5EF26EFD154004B10CC /* ScannerCheckModalView.swift in Sources */,
 				5BC4568626F0F01A001AACCA /* ScanButtonView.swift in Sources */,
+				5B4B796526F248300093EDC5 /* CornerRadiusExtension.swift in Sources */,
 				5BCF3F2D26EBCD0B00CD3B48 /* TabBarView.swift in Sources */,
 				5B14264426F151FB00C50851 /* DayPeriodButtonView.swift in Sources */,
 				5B7FD0D926E6CF6600ECCE7B /* FeedView.swift in Sources */,
