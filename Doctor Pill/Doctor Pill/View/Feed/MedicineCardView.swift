@@ -39,7 +39,7 @@ struct MedicineCardView: View {
             }
             .padding()
             .background(
-                LinearGradient(gradient: Gradient(colors: [Color(red: 1, green: 234/255, blue: 121/255),Color(red: 251/255, green: 202/255, blue: 106/255)]), startPoint: .bottomLeading, endPoint: .top)
+                LinearGradient(gradient: Gradient(colors: [Color("DarkMorning"),Color("LightMorning")]), startPoint: .bottomLeading, endPoint: .topTrailing)
             )
             .cornerRadius(20)
         }
