@@ -23,10 +23,13 @@ struct PeriodTableView: View {
                     Divider()
                 }
             }
+            .id(1)
             .padding()
             .font(.system(size: 22))
+            
             MedicineCardView()
             MedicineCardView()
+            
             HStack(spacing: 20) {
                 Text("\(Image(systemName: "sun.max")) Tarde")
                     .fontWeight(.bold)
@@ -34,11 +37,13 @@ struct PeriodTableView: View {
                     Divider()
                 }
             }
+            .id(2)
             .padding()
             .font(.system(size: 22))
             
             MedicineCardView()
             MedicineCardView()
+            
             HStack(spacing: 20) {
                 Text("\(Image(systemName: "moon.stars")) Noite")
                     .fontWeight(.bold)
@@ -46,8 +51,10 @@ struct PeriodTableView: View {
                     Divider()
                 }
             }
+            .id(3)
             .padding()
             .font(.system(size: 22))
+            
             MedicineCardView()
             MedicineCardView()
         }

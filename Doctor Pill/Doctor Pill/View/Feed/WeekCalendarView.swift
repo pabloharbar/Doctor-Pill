@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct WeekCalendarView: View {
+    @Binding var selectedDay: DiasDaSemana
+    
     var body: some View {
         VStack {
             Divider()
-            generateWeek(currentDay: .terca)
+            generateWeek(currentDay: selectedDay)
+                .frame(height: 52)
         }
     }
     
@@ -19,28 +22,36 @@ struct WeekCalendarView: View {
         let diasDaSemana: [DiasDaSemana] = [.domingo,.segunda,.terca,.quarta,.quinta,.sexta,.sabado]
         HStack() {
             ForEach(diasDaSemana,id: \.self) { dia in
-                if dia == currentDay {
-                    Text("\(getDayText(currentDay: dia))")
-                        .font(.body)
-//                        .padding()
-                        .foregroundColor(.white)
-                        .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.black)
-                        .cornerRadius(12)
-                        .overlay(
-                            Triangle()
-                                .fill(Color.black)
-                                .frame(width: 21, height: 14)
-                                .rotationEffect(.init(degrees: 180))
-                                .offset(y: -28)
-                            
-                        )
-                    
-                } else {
-                    Text("\(getDayText(currentDay: dia))")
-                        .font(.body)
-                        .padding()
-                }
+                Button(action: {
+                    selectedDay = dia
+                }, label: {
+                    if dia == currentDay {
+                        Text("\(getDayText(currentDay: dia))")
+                            .font(.body)
+    //                        .padding()
+                            .foregroundColor(.white)
+                            .frame(width: 30, height: 30, alignment: .center)
+                            .background(Color.black)
+                            .cornerRadius(15)
+                            .overlay(
+                                Triangle()
+                                    .fill(Color.black)
+                                    .frame(width: 21, height: 14)
+                                    .rotationEffect(.init(degrees: 180))
+                                    .offset(y: -28)
+                                
+                            )
+                        
+                    } else {
+                        Text("\(getDayText(currentDay: dia))")
+                            .foregroundColor(.black)
+                            .font(.body)
+                            .frame(width: 30, height: 30, alignment: .center)
+                    }
+                })
+                .padding(.horizontal,5)
+                
+                
             }
             
         }
@@ -80,6 +91,6 @@ struct Triangle: Shape {
 
 struct WeekCalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekCalendarView()
+        WeekCalendarView(selectedDay: .constant(.terca))
     }
 }

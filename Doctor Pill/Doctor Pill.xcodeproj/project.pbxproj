@@ -24,6 +24,7 @@
 		5B4B796726F24AE50093EDC5 /* RegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B796626F24AE50093EDC5 /* RegisterManager.swift */; };
 		5B4B796926F24D090093EDC5 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B796826F24D090093EDC5 /* ProgressView.swift */; };
 		5B4B796B26F24FCC0093EDC5 /* PreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B796A26F24FCC0093EDC5 /* PreviewCardView.swift */; };
+		5B4B796D26F26C780093EDC5 /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B796C26F26C780093EDC5 /* FeedManager.swift */; };
 		5B79182526E6DB6200720745 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B79182426E6DB6200720745 /* ScanView.swift */; };
 		5B79182826E6DD4900720745 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B79182726E6DD4900720745 /* ScanViewController.swift */; };
 		5B79182A26E6DD5C00720745 /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B79182926E6DD5C00720745 /* VisionViewController.swift */; };
@@ -65,6 +66,7 @@
 		5B4B796626F24AE50093EDC5 /* RegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterManager.swift; sourceTree = "<group>"; };
 		5B4B796826F24D090093EDC5 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		5B4B796A26F24FCC0093EDC5 /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
+		5B4B796C26F26C780093EDC5 /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		5B79182426E6DB6200720745 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		5B79182726E6DD4900720745 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		5B79182926E6DD5C00720745 /* VisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				5BCF3F3226EBDA3500CD3B48 /* TabBarManager.swift */,
 				5B003ADB26F10581009948E7 /* SpeechManager.swift */,
 				5B4B796626F24AE50093EDC5 /* RegisterManager.swift */,
+				5B4B796C26F26C780093EDC5 /* FeedManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				AF4C814726EC3903006C92A2 /* KeyboardView.swift in Sources */,
 				5B14264226F149B700C50851 /* WeekCalendarView.swift in Sources */,
 				5B14263F26F135FE00C50851 /* CardHistoricoView.swift in Sources */,
+				5B4B796D26F26C780093EDC5 /* FeedManager.swift in Sources */,
 				5B14264826F158E900C50851 /* MedicineCardView.swift in Sources */,
 				5B003ADC26F10581009948E7 /* SpeechManager.swift in Sources */,
 				5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */,
