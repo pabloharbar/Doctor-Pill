@@ -18,7 +18,6 @@ struct ConditionsListView: View {
                     HStack {
                         registerManager.getImageByCondition()
                         Text(condition)
-                        Spacer()
                     }
                 })
                 .buttonStyle(PlainButtonStyle())

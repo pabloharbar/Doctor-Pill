@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ListInputView: View {
     @EnvironmentObject var registerManager: RegisterManager
+    let state = 3
+    @State var minutes = 1
+    
     var body: some View {
         createListInput(registerManager: registerManager)
     }
-    var state = 4
+    
     fileprivate func createListInput(registerManager: RegisterManager) -> some View {
         
 //        switch registerManager.progressState {
@@ -60,6 +63,8 @@ struct ListInputView: View {
             })
             
         case 3:
+            let hours = (0...24)
+            let minutes = (0...59)
             return AnyView(VStack {
                 HStack {
                     Text("HORÁRIOS")
@@ -70,8 +75,28 @@ struct ListInputView: View {
                 }
                 Divider()
                 List {
-                    ListTextField(label: "Nome", text: $registerManager.nome)
-                    ListTextField(label: "Posologia", text: $registerManager.nome)
+                    ForEach((1...registerManager.vezesAoDia), id: \.self) { count in
+                        HStack {
+                            Text("\(registerManager.quantidade) comprimido" + (registerManager.quantidade >= 1 ? " às" : "s às"))
+                            Spacer()
+                            HStack {
+                                Picker("Por favor selecionado uma hora", selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, content: {
+                                    /*@START_MENU_TOKEN@*/Text("1").tag(1)/*@END_MENU_TOKEN@*/
+                                    /*@START_MENU_TOKEN@*/Text("2").tag(2)/*@END_MENU_TOKEN@*/
+                                })
+                                .frame(width: 50)
+                                Picker("Por favor selecione os minutos", selection: $minutes) {
+                                    ForEach(minutes, id: \.self) { minute in
+                                        Text(minute)
+                                    }
+                                }
+                                .frame(width: 50)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    UITableView.appearance().isScrollEnabled = false
                 }
             })
             

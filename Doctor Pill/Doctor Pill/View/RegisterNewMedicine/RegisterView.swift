@@ -63,7 +63,7 @@ struct RegisterView: View {
             }, label: {
                 HStack {
                     Spacer()
-                    Text("Próximo")
+                    Text(registerManager.progressState == 4 ? "Adicionar" : "Próximo")
                         .font(.headline)
                         .foregroundColor(.white)
                     Spacer()
