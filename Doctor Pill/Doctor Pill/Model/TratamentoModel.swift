@@ -9,15 +9,15 @@ import Foundation
 
 struct Tratamento: Equatable, Hashable, Codable {
     
-    let remedios: [Remedio]
+    var remedios: [Remedio]
     let duracaoEmDias: Int
     let proposito: String
     let id: UUID
     
-    init(remedios: [Remedio], duracaoEmDias: Int = 0, proposito: String, id: UUID = UUID()) {
+    init(remedios: [Remedio], proposito: String, duracaoEmDias: Int = 0,  id: UUID = UUID()) {
         self.remedios = remedios
-        self.duracaoEmDias = duracaoEmDias
         self.proposito = proposito
+        self.duracaoEmDias = duracaoEmDias
         self.id = id
     }
     
@@ -37,5 +37,9 @@ struct Tratamento: Equatable, Hashable, Codable {
         }
 
         return false
+    }
+    
+    mutating func adicionarRemedio(_ remedio: Remedio) {
+        remedios.append(remedio)
     }
 }
