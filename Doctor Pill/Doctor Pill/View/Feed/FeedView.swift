@@ -10,7 +10,7 @@ import SwiftUI
 struct FeedView: View {
     @State var registerSheetIsShowing = false
     @State var scrollToTarget: Int?
-    @ObservedObject var feedManager = FeedManager()
+    @EnvironmentObject var feedManager: FeedManager
     
     var body: some View {
         VStack {
@@ -67,5 +67,6 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView()
+            .environmentObject(FeedManager())
     }
 }

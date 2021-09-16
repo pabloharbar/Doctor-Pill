@@ -9,15 +9,16 @@ import SwiftUI
 
 struct ConditionsListView: View {
     @EnvironmentObject var registerManager: RegisterManager
+    
     var body: some View {
         List {
-            ForEach(registerManager.conditions, id: \.self) { condition in
+            ForEach(Instrucoes.allCases, id: \.self) { condition in
                 Button(action: {
                     
                 }, label: {
                     HStack {
-                        registerManager.getImageByCondition()
-                        Text(condition)
+                        condition.getImage()
+                        Text(condition.rawValue)
                     }
                 })
                 .buttonStyle(PlainButtonStyle())

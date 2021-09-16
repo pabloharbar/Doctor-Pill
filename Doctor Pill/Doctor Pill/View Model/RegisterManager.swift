@@ -24,6 +24,10 @@ final class RegisterManager: ObservableObject {
     @Published var formato: FormatoRemedio
     @Published var continuidade: (duracao: Int, frequencia: FrequenciaRemedo)?
     
+    @Published var usoContinuo: Bool
+    @Published var duracao: Int
+    @Published var frequencia: FrequenciaRemedo
+    
     /* Informações da terceira página */
     @Published var horarios: [Date]
     
@@ -36,7 +40,7 @@ final class RegisterManager: ObservableObject {
         self.nome = ""
         self.posologia = ""
         self.tratamento = Tratamento(remedios: [], proposito: "")
-        self.quantidade = 1
+        self.quantidade = 1.0
         self.tipo = .comprimido
         self.vezesAoDia = 1
         self.formato = .redondo
@@ -44,6 +48,10 @@ final class RegisterManager: ObservableObject {
         self.horarios = []
         self.notas = ""
         self.instrucoes = []
+        
+        self.usoContinuo = true
+        self.duracao = 1
+        self.frequencia = .dias
     }
     
     func salvarRemedio() {
@@ -61,12 +69,6 @@ final class RegisterManager: ObservableObject {
         )
 
         tratamento.adicionarRemedio(remedio)
-    }
-    
-    let conditions = ["Em jejum", "Antes da refeição", "Durante a refeição", "Depois da refeição", "Ingerir com água quente", "Ingerir com água", "Colocar na água (efervescente)", "Não Ingerir bebidas alcoóicas", "Sublingual", "Inalação", "Logo ao acordar", "Antes de dormir"]
-    
-    func getImageByCondition() -> some View {
-        return AnyView(Image(systemName: "xmark"))
     }
     
 }

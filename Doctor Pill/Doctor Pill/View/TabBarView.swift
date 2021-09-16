@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @ObservedObject var tabBarManager = TabBarManager(initialIndex: 1, customItemIndex: 2)
+    @EnvironmentObject var tabBarManager: TabBarManager
     @State var recognizedText = ""
-    @State var selectedTab = 1
     
     var body: some View {
         TabView(selection: $tabBarManager.itemSelected) {
