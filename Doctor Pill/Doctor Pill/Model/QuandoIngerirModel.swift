@@ -8,13 +8,13 @@
 import Foundation
 
 enum DiasDaSemana: Int, CaseIterable, Codable, Hashable {
+    case domingo
     case segunda
     case terca
     case quarta
     case quinta
     case sexta
     case sabado
-    case domingo
 }
 
 struct QuandoIngerirModel: Equatable, Codable {
