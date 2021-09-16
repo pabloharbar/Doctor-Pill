@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FormatosPadroes: Hashable {
+struct InstrucoesPadrao: Hashable {
     let name: String
     let image: Image
     
@@ -16,8 +16,13 @@ struct FormatosPadroes: Hashable {
     }
 }
 
+struct TiposPadrao {
+    let name: String
+    let image: Image
+}
+
 struct FormatoView: View {
-    let formatosPadroes: [FormatosPadroes] = TratamentosManager.formatosPadroes
+    let formatosPadroes: [InstrucoesPadrao] = TratamentosManager.instrucoesPadrao
     var body: some View {
         List {
             ForEach(formatosPadroes, id: \.self) { formato in

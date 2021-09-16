@@ -26,16 +26,18 @@ class TratamentosManager: ObservableObject {
         })
     }
     
-    static let formatosPadroes = [
-        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Injeção", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Envelope", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Pomada", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Gotas", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Xarope", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
-        FormatosPadroes(name: "Comprimido", image: Image(systemName: "pills")),
+    static let instrucoesPadrao = [
+        InstrucoesPadrao(name: "Em jejum", image: Image("instrucao_jejum")),
+        InstrucoesPadrao(name: "Antes da refeição", image: Image("instrucao_antes_refeicao")),
+        InstrucoesPadrao(name: "Durante a refeição", image: Image("instrucao_durante_refeicao")),
+        InstrucoesPadrao(name: "Depois da refeição", image: Image("instrucao_depois_refeicao")),
+        InstrucoesPadrao(name: "Ingerir com água quente", image: Image("instrucao_agua_quente")),
+        InstrucoesPadrao(name: "Ingerir com água", image: Image("instrucao_agua")),
+        InstrucoesPadrao(name: "Colocar na água (efervescente)", image: Image("instrucao_efervescente")),
+        InstrucoesPadrao(name: "Não ingerir bebidas alcoólicas", image: Image("instrucao_proibido_bebida_alcoolica")),
+        InstrucoesPadrao(name: "Sublingual", image: Image("instrucao_sublingual")),
+        InstrucoesPadrao(name: "Inalação", image: Image("instrucao_inacao")),
+        InstrucoesPadrao(name: "Logo ao acordar", image: Image("instrucao_ao_acordar_mini")),
+        InstrucoesPadrao(name: "Antes de dormir", image: Image("instrucao_antes_dormir_mini")),
     ]
-
 }
