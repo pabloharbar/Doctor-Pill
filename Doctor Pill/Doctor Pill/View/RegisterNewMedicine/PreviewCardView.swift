@@ -19,30 +19,24 @@ struct CustomDivider: View {
 }
 
 struct PreviewCardView: View {
-    @State var nome: String = ""
-    @State var intrucoes: [Instrucoes] = []
-    @State var posologia: String = ""
-    @State var notas: String = ""
-
-    fileprivate func botaoConfirmar() -> some View {
-        return Button(action: {}) {
-            Image(systemName: "checkmark")
-                .font(.title2)
-                .frame(width: 57, height: 57)
-                .background(Color.green)
-        }
-        .clipShape(Circle())
-        .buttonStyle(PlainButtonStyle())
-    }
+    @Binding var hora: String
+    @Binding var nome: String
+    @Binding var intrucoes: [Instrucoes]
+    @Binding var posologia: String
+    @Binding var notas: String
     
-    fileprivate func notasMedico() -> some View {
-        return VStack(alignment: .leading) {
-            Text("Observações de médico.")
-                .font(.footnote)
-            
-            Text(notas)
-                .font(.body)
-        }.padding(.horizontal, 16)
+    fileprivate func detalhesRemedio() -> some View {
+        return HStack(spacing: 12) {
+            Circle().frame(width: 50, height: 50)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(nome)
+                    .font(.title2)
+                Text(posologia)
+                    .font(.callout)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.bottom, (notas.isEmpty && intrucoes.isEmpty) ? 120 : 14)
     }
     
     fileprivate func botaoScanner() -> some View {
@@ -63,18 +57,34 @@ struct PreviewCardView: View {
         .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
     }
     
-    fileprivate func detalhesRemedio() -> some View {
-        return HStack(spacing: 12) {
-            Circle().frame(width: 50, height: 50)
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Dipirona")
-                    .font(.title2)
-                Text("200mg")
-                    .font(.callout)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+    fileprivate func notasMedico() -> some View {
+        return VStack(alignment: .leading) {
+            Text("Observações de médico.")
+                .font(.footnote)
+            
+            Text(notas)
+                .font(.body)
         }
-        .padding(.bottom, notas.isEmpty ? 120 : 0)
+        .frame(maxWidth: .infinity)
+    }
+    
+    fileprivate func botaoConfirmar() -> some View {
+        return Button(action: {}) {
+            Image(systemName: "checkmark")
+                .font(.title2)
+                .frame(width: 57, height: 57)
+                .background(Color.green)
+        }
+        .clipShape(Circle())
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    fileprivate func listaInstrucoes() -> some View {
+        return HStack {
+            ForEach(intrucoes, id: \.self) { instrucao in
+                ConditionView(amount: 0, image: instrucao.getImage())
+            }
+        }
     }
     
     var body: some View {
@@ -87,13 +97,17 @@ struct PreviewCardView: View {
                 
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {
-                        Text("10:00")
+                        Text(hora)
                             .font(.headline)
                             .padding(8)
                         
                         VStack(spacing: 0) {
                             VStack(spacing: 18) {
                                 detalhesRemedio()
+                                
+                                if !intrucoes.isEmpty {
+                                    listaInstrucoes()
+                                }
                                 
                                 if !notas.isEmpty {
                                     notasMedico()
@@ -117,13 +131,25 @@ struct PreviewCardView: View {
             botaoConfirmar()
             .offset(x: 17, y: 112)
         }
-        .padding(.horizontal, 40)
+        .padding(.leading, 14)
+        .padding(.trailing, 20)
         .shadow(color: .black.opacity(0.1), radius: 17, x: 0, y: 8)
     }
 }
 
 struct PreviewCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewCardView()
+        PreviewCardView(
+            hora: .constant("10:00"),
+            nome: .constant("Dipirona"),
+            intrucoes: .constant([
+                .jejum,
+                .agua,
+                .aoAcordar,
+                .bebidaAlcoolica
+            ]),
+            posologia: .constant("200mg"),
+            notas: .constant("Lorem ipsum dolor sit amet, consectetur adi")
+        )
     }
 }
