@@ -19,9 +19,13 @@ struct RegisterView: View {
                 ZStack {
                     HStack {
                         Button(action: {
-                            presentationMode.wrappedValue.dismiss()
+                            if registerManager.progressState == 1 {
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                registerManager.progressState -= 1
+                            }
                         }, label: {
-                            Text("Cancelar")
+                            Text(registerManager.progressState == 1 ? "Cancelar" : "Voltar")
                                 .foregroundColor(.black)
                         })
                         Spacer()
@@ -39,33 +43,18 @@ struct RegisterView: View {
                 
                 Spacer()
                 
-                
-                
-                
-                
             }
             .padding(.top,50)
             .background(
                 LinearGradient(gradient: Gradient(colors: [Color(red: 208/255, green: 219/255, blue: 1), Color(red: 127/255, green: 155/255, blue: 251/255)]), startPoint: .bottomLeading, endPoint: .topTrailing)
             )
-//            .cornerRadius(24)
             .cornerRadius(24, corners: [.bottomLeft,.bottomRight]) //Extension
             .ignoresSafeArea()
             
             Spacer()
-            
-            HStack {
-                Text("INFORMAÇÕES")
-                    .font(.system(size: 13))
-                    .foregroundColor(.gray)
-                    .padding([.leading,.top])
-                Spacer()
-            }
-            Divider()
-            List {
-                ListTextField(label: "Nome", text: $registerManager.nome)
-                ListTextField(label: "Posologia", text: $registerManager.nome)
-            }
+            ListInputView()
+                .environmentObject(registerManager)
+
             ProgressView(progressState: $registerManager.progressState)
                 .padding()
             
@@ -87,8 +76,9 @@ struct RegisterView: View {
             .padding(.horizontal,70)
             
         }
+        }
     }
-}
+
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct ConditionsListView: View {
+    @EnvironmentObject var registerManager: RegisterManager
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(registerManager.conditions, id: \.self) { condition in
+                Button(action: {
+                    
+                }, label: {
+                    HStack {
+                        registerManager.getImageByCondition()
+                        Text(condition)
+                        Spacer()
+                    }
+                })
+                .buttonStyle(PlainButtonStyle())
+            }
+        }
     }
 }
 
 struct ConditionsListView_Previews: PreviewProvider {
     static var previews: some View {
         ConditionsListView()
+            .environmentObject(RegisterManager())
     }
 }

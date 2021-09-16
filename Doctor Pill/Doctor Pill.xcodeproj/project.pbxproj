@@ -43,6 +43,8 @@
 		5BEAC26226E54FF300034DE6 /* TratamentoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */; };
 		5BEAC26426E5512600034DE6 /* TratamentosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26326E5512600034DE6 /* TratamentosManager.swift */; };
 		5BEAC26626E551AF00034DE6 /* DiaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAC26526E551AF00034DE6 /* DiaManager.swift */; };
+		5BEEA66026F3B689003926FB /* ListInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEEA65F26F3B689003926FB /* ListInputView.swift */; };
+		5BEEA66226F3C045003926FB /* ConditionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEEA66126F3C045003926FB /* ConditionsListView.swift */; };
 		AF4C814526EBD168006C92A2 /* PillKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C814426EBD168006C92A2 /* PillKeyboard.swift */; };
 		AF4C814726EC3903006C92A2 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4C814626EC3903006C92A2 /* KeyboardView.swift */; };
 		AFCC09C426F14DAF00EF4BEA /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC09C326F14DAF00EF4BEA /* ListTextField.swift */; };
@@ -87,6 +89,8 @@
 		5BEAC26126E54FF300034DE6 /* TratamentoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamentoModel.swift; sourceTree = "<group>"; };
 		5BEAC26326E5512600034DE6 /* TratamentosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamentosManager.swift; sourceTree = "<group>"; };
 		5BEAC26526E551AF00034DE6 /* DiaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaManager.swift; sourceTree = "<group>"; };
+		5BEEA65F26F3B689003926FB /* ListInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInputView.swift; sourceTree = "<group>"; };
+		5BEEA66126F3C045003926FB /* ConditionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsListView.swift; sourceTree = "<group>"; };
 		AF4C814426EBD168006C92A2 /* PillKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillKeyboard.swift; sourceTree = "<group>"; };
 		AF4C814626EC3903006C92A2 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		AFCC09C326F14DAF00EF4BEA /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				5B7FD0DA26E6D23000ECCE7B /* RegisterView.swift */,
 				5B4B796826F24D090093EDC5 /* ProgressView.swift */,
 				5B4B796A26F24FCC0093EDC5 /* PreviewCardView.swift */,
+				5BEEA65F26F3B689003926FB /* ListInputView.swift */,
+				5BEEA66126F3C045003926FB /* ConditionsListView.swift */,
 			);
 			path = RegisterNewMedicine;
 			sourceTree = "<group>";
@@ -324,11 +330,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B3D07E026EA922300A2BA24 /* UserDefaultsWrapper.swift in Sources */,
+				5BEEA66026F3B689003926FB /* ListInputView.swift in Sources */,
 				5B7FD0DB26E6D23000ECCE7B /* RegisterView.swift in Sources */,
 				5B9FD5EF26EFD154004B10CC /* ScannerCheckModalView.swift in Sources */,
 				5BC4568626F0F01A001AACCA /* ScanButtonView.swift in Sources */,
 				5B4B796526F248300093EDC5 /* CornerRadiusExtension.swift in Sources */,
 				5BCF3F2D26EBCD0B00CD3B48 /* TabBarView.swift in Sources */,
+				5BEEA66226F3C045003926FB /* ConditionsListView.swift in Sources */,
 				5B14264426F151FB00C50851 /* DayPeriodButtonView.swift in Sources */,
 				5B7FD0D926E6CF6600ECCE7B /* FeedView.swift in Sources */,
 				5BEAC26426E5512600034DE6 /* TratamentosManager.swift in Sources */,
