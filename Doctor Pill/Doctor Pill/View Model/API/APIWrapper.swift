@@ -31,11 +31,11 @@ class APIWrapper {
             let decoder = JSONDecoder()
             print(data)
             do {
-                
                 let response = try decoder.decode(APIResponse.self, from: data)
                 DispatchQueue.main.async {
                     var similarsResponse = response.similars
                     similarsResponse.append(response.name)
+                    similarsResponse.append(response.sent)
                     completion(similarsResponse)
                 }
             } catch let error {
