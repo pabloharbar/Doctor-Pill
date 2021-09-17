@@ -14,7 +14,6 @@ enum TipoRemedio: String, Codable, CaseIterable {
     case meioComprimido = "Meio Comprimido"
     case envelope = "Envelope"
     case pomada = "Pomada"
-    case comprimidoComprido = "Comprimido Comprido"
     case shampoo = "Shampoo"
     case adesivo = "Adesivo"
     case locao = "Loção"
@@ -37,8 +36,6 @@ enum TipoRemedio: String, Codable, CaseIterable {
             return Image("tipo_envelope")
         case .pomada:
             return Image("tipo_pomada")
-        case .comprimidoComprido:
-            return Image("tipo_comprimido_comprido")
         case .shampoo:
             return Image("tipo_shampoo")
         case .adesivo:
@@ -74,6 +71,7 @@ enum Instrucoes: String, Codable, CaseIterable {
     case inlacao = "Inalação"
     case aoAcordar = "Logo ao acordar"
     case antesDormir = "Antes de dormir"
+    case jejumLiquido = "Em jejum de líquidos"
     
     func getImage() -> Image {
         switch self {
@@ -101,6 +99,8 @@ enum Instrucoes: String, Codable, CaseIterable {
             return Image("instrucao_ao_acordar_mini")
         case .antesDormir:
             return Image("instrucao_antes_dormir_mini")
+        case .jejumLiquido:
+            return Image("instrucao_jejum_liquido")
         }
     }
 }

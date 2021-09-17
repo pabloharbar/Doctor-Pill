@@ -158,7 +158,7 @@ class VisionViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         for result in observations {
             // Find the recognized text in the center of screen with certain confidence
             for text in result.topCandidates(1)
-            where text.confidence >= 0.5 && result.boundingBox.contains(.init(x: 0.5, y: 0.5)) {
+            where text.confidence >= 0.5 && result.boundingBox.contains(.init(x: 0.5, y: 0.6)) {
                 // Update UI in main thread as the image is analyzed in background thread
                 DispatchQueue.main.async {
                     let trimmedText = text.string.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -188,7 +188,7 @@ class VisionViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let viewHeight = Int(view.frame.size.height)
 
         // Normalize bounding box to view coordinate system
-        let rect = VNImageRectForNormalizedRect(boundingBox, viewWidth, viewHeight)
+        let rect = VNImageRectForNormalizedRect(boundingBox, viewWidth, viewHeight).offsetBy(dx: 0, dy: (-UIScreen.main.bounds.height * 0.2) - 24)
 
         // Create the rectangle layer
         let outline = CALayer()

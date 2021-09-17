@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "instrucao_agua_quente.png",
+      "filename" : "instrucao_agua_quente@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "instrucao_agua_quente@2x-1.png",
+      "filename" : "instrucao_agua_quente@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "instrucao_agua_quente@3x-1.png",
+      "filename" : "instrucao_agua_quente@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

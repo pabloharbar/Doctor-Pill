@@ -17,6 +17,8 @@ struct Doctor_PillApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .colorScheme(.light)
+                .environmentObject(registerManager)
 //                .environmentObject(registerManager)
                 .environmentObject(tratamentosManager)
                 .environmentObject(tabBarManager)
