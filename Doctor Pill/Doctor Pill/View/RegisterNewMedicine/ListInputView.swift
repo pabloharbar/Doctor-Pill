@@ -53,11 +53,11 @@ struct ListInputView: View {
                     Spacer()
                 }
                 Divider()
-                HStack(spacing: 0) {
+                HStack(spacing: 5) {
                     Picker(selection: $registerManager.quantidade, label: Text("Quantidade"), content: {
                         ForEach(1...10, id: \.self) { i in
                             Text("\(i)")
-                                .tag(registerManager.tipo == .meioComprimido ? Float(i/2) : Float(i))
+                                .tag(registerManager.tipo == .meioComprimido ? Float(i) / 2 : Float(i))
                         }
                     })
                     .frame(width: 40, height: 50)
