@@ -34,6 +34,8 @@
 		5B836F9F26E15C440061C924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B836F9E26E15C440061C924 /* Assets.xcassets */; };
 		5B836FA226E15C440061C924 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B836FA126E15C440061C924 /* Preview Assets.xcassets */; };
 		5B9FD5EF26EFD154004B10CC /* ScannerCheckModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FD5EE26EFD154004B10CC /* ScannerCheckModalView.swift */; };
+		5BC1151E26F5092000074B5D /* MedicineScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC1151D26F5092000074B5D /* MedicineScanView.swift */; };
+		5BC1152026F50CA200074B5D /* ScanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC1151F26F50CA200074B5D /* ScanManager.swift */; };
 		5BC4568626F0F01A001AACCA /* ScanButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4568526F0F01A001AACCA /* ScanButtonView.swift */; };
 		5BCF3F2D26EBCD0B00CD3B48 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF3F2C26EBCD0B00CD3B48 /* TabBarView.swift */; };
 		5BCF3F3126EBD0F300CD3B48 /* PreScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF3F3026EBD0F300CD3B48 /* PreScanView.swift */; };
@@ -81,6 +83,8 @@
 		5B836FA126E15C440061C924 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B836FA326E15C440061C924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B9FD5EE26EFD154004B10CC /* ScannerCheckModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerCheckModalView.swift; sourceTree = "<group>"; };
+		5BC1151D26F5092000074B5D /* MedicineScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineScanView.swift; sourceTree = "<group>"; };
+		5BC1151F26F50CA200074B5D /* ScanManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanManager.swift; sourceTree = "<group>"; };
 		5BC4568526F0F01A001AACCA /* ScanButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButtonView.swift; sourceTree = "<group>"; };
 		5BCF3F2C26EBCD0B00CD3B48 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		5BCF3F3026EBD0F300CD3B48 /* PreScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreScanView.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				5B79182426E6DB6200720745 /* ScanView.swift */,
 				5BC4568526F0F01A001AACCA /* ScanButtonView.swift */,
 				5B9FD5EE26EFD154004B10CC /* ScannerCheckModalView.swift */,
+				5BC1151D26F5092000074B5D /* MedicineScanView.swift */,
 			);
 			path = Scan;
 			sourceTree = "<group>";
@@ -256,9 +261,10 @@
 				5BEAC26526E551AF00034DE6 /* DiaManager.swift */,
 				5B3D07DF26EA922300A2BA24 /* UserDefaultsWrapper.swift */,
 				5BCF3F3226EBDA3500CD3B48 /* TabBarManager.swift */,
-				5B003ADB26F10581009948E7 /* SpeechManager.swift */,
 				5B4B796626F24AE50093EDC5 /* RegisterManager.swift */,
 				5B4B796C26F26C780093EDC5 /* FeedManager.swift */,
+				5BC1151F26F50CA200074B5D /* ScanManager.swift */,
+				5B003ADB26F10581009948E7 /* SpeechManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -340,7 +346,9 @@
 				5BC4568626F0F01A001AACCA /* ScanButtonView.swift in Sources */,
 				5B4B796526F248300093EDC5 /* CornerRadiusExtension.swift in Sources */,
 				5BCF3F2D26EBCD0B00CD3B48 /* TabBarView.swift in Sources */,
+				5BC1152026F50CA200074B5D /* ScanManager.swift in Sources */,
 				5BEEA66226F3C045003926FB /* ConditionsListView.swift in Sources */,
+				5BC1151E26F5092000074B5D /* MedicineScanView.swift in Sources */,
 				5B14264426F151FB00C50851 /* DayPeriodButtonView.swift in Sources */,
 				5B7FD0D926E6CF6600ECCE7B /* FeedView.swift in Sources */,
 				5BEAC26426E5512600034DE6 /* TratamentosManager.swift in Sources */,
@@ -501,7 +509,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Doctor Pill/Preview Content\"";
-				DEVELOPMENT_TEAM = 3GTJZ8KSTX;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Doctor Pill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -523,7 +531,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Doctor Pill/Preview Content\"";
-				DEVELOPMENT_TEAM = 3GTJZ8KSTX;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Doctor Pill/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

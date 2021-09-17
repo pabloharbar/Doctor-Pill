@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TabBarView: View {
     @EnvironmentObject var tabBarManager: TabBarManager
+    @EnvironmentObject var scanManager: ScanManager
+    
     @State var recognizedText = ""
     
     var body: some View {
@@ -36,7 +38,8 @@ struct TabBarView: View {
             tabBarManager.itemSelected = 1
         },
              content: {
-                ScanView(recognizedText: $recognizedText)
+                ScanView()
+                    .environmentObject(scanManager)
         })
     }
 }

@@ -8,49 +8,20 @@
 import SwiftUI
 import AVFoundation
 
-struct VisualEffectView: UIViewRepresentable {
-    var effect: UIVisualEffect?
-    
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView()
-    }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = effect
-    }
-}
-
 struct ScanView: View {
-    @Binding var recognizedText: String
-    @State var scanState: ScanState = .notFound
-    @State var hasFoundCorrect = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @State var scannerCardShowing = false
-    
-    
+    @EnvironmentObject var scanManager: ScanManager
+
+
     var speechManager = SpeechManager()
-    
-    let apiWrapper = APIWrapper()
-    
-    func displayResult() {
-        //Chamar a api
-        apiWrapper.decodeSimilars(recognizedText: recognizedText) { similars in
-            print(similars)
-            if !similars.isEmpty {
-                //É o remedio certo
-                hasFoundCorrect = true
-                scanState = .found
-            }
-        }
-    }
+
     
     func HoleShapeMask(in rect: CGRect) -> Path {
         var shape = RoundedRectangle(cornerRadius: 29).path(in: rect)
         shape.addPath(Circle().path(in: rect))
         return shape
     }
-    
+
     fileprivate func closeButton() -> some View {
         return VStack {
             HStack {
@@ -69,112 +40,108 @@ struct ScanView: View {
         }
         .frame(maxWidth: .infinity)
     }
-    
+
     fileprivate func scanResult() -> some View {
         return HStack(spacing: 0) {
-            ForEach(scanState.getIconsName(), id: \.self) { iconName in
+            ForEach(scanManager.scanState.getIconsName(), id: \.self) { iconName in
                 Image(systemName: iconName)
             }
         }
         .font(.system(size: 24))
-        .padding(.vertical, 32)
+        .padding(.vertical, 24)
         .frame(maxWidth: .infinity)
-        .background(scanState.getColor())
+        .padding(.top, 30)
+        .background(scanManager.scanState.getColor())
         .cornerRadius(29, corners: [.bottomLeft, .bottomRight])
         .padding(.bottom, 20)
         .background(Color.white)
+        .offset(y: -30)
     }
-    
+
     fileprivate func scannerFrame() -> some View {
         return ZStack(alignment: .bottom) {
             Rectangle()
-                .fill(scanState.getColor())
-                .frame(height: UIScreen.main.bounds.height * 0.62)
+                .fill(LinearGradient(gradient: Gradient(colors: [Color("PadraoDark"), Color("PadraoLight")]), startPoint: .top, endPoint: .bottom))
+                .cornerRadius(29, corners: [.bottomLeft,.bottomRight])
+                .frame(height: UIScreen.main.bounds.height * 0.7 + 35)
             
             RoundedRectangle(cornerRadius: 29)
-                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height / 2)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.63 - 35)
                 .blendMode(.destinationOut)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 29)
+                        .stroke(scanManager.scanState.getColor(), lineWidth: 10)
+                )
+                .offset(y: -35)
             
         }
         .compositingGroup()
     }
-    
+
     fileprivate func scannerAim() -> some View {
         return Image(systemName: "plus")
             .font(.title.weight(.black))
             .offset(y: (UIScreen.main.bounds.height * 0.4) - 24)
                 .foregroundColor(.black.opacity(0.75))
     }
-    
+
     var body: some View {
         ZStack(alignment: .top) {
-            ScanViewController(recognizedText: $recognizedText)
+            ScanViewController(recognizedText: $scanManager.recognizedText)
+            closeButton()
+
+                .zIndex(3)
             
             VStack(spacing: 0) {
                 scannerFrame()
-                
+                    .zIndex(2)
                 scanResult()
+                    .zIndex(1)
+                    
+                HStack {
+                    HStack {
+                        Button(action: {
+                            let textRead = scanManager.scanState == .notFound ? "Continue escaneando até encontrar um remédio" : scanManager.scanState == .found ? "O remédio \(scanManager.medicineName) está registrado na sua rotina" : ""
+                            speechManager.speak(text: textRead)
+                        }, label: {
+                            Image(systemName: "speaker.wave.3.fill")
+                                .font(.system(size: 24))
+                        })
+                        Text(scanManager.scanState == .notFound ? "..." : scanManager.medicineName)
+                            .font(.title2)
+                        Spacer()
+                    }
+                    .padding()
+                }
+                .background(
+                    Color.white
+                        .cornerRadius(20)
+                        .shadow(color: .gray, radius: 8, x: 0, y: 8)
+                                )
+                .padding()
+                .padding(.bottom,20)
+                .background(Color.white.edgesIgnoringSafeArea(.bottom))
+                .offset(y: -35)
                 
-                Image("Ritalina")
-                    .resizable()
-                    .scaledToFill()
-                    .offset(y: 25)
-                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.20)
-                    .clipShape(RoundedRectangle(cornerRadius: 29))
-                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
-                    .padding(.bottom, (UIScreen.main.bounds.height * 0.1) - 35)
-                    .background(Color.white.edgesIgnoringSafeArea(.bottom))
-                /*
-                RoundedRectangle(cornerRadius: 29)
-                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.20)
-                */
             }
 
-            closeButton()
 
-            Text(recognizedText)
+            Text(scanManager.recognizedText)
                 .padding()
                 .offset(y: 250)
                 .foregroundColor(.white)
 
             scannerAim()
             
-            if scannerCardShowing {
-                ScannerCheckModalView(modalShowing: $scannerCardShowing)
-            }
-            
-            /*GeometryReader { geometry in
-                VStack {
-                    Spacer()
-                    VStack {
-                        Button(action: {
-                            if scanState != .found {
-                                self.speechManager.speak(text: scanState == .notFound ? "Continue escaneando até achar um remédio" : scanState == .notRegistered ? "Esse remédio não está cadastrado no seu App." : "")
-                            } else {
-                                scannerCardShowing = true
-                            }
-
-                        }) {
-                            ScanButtonView(scanState: $scanState)
-                                .foregroundColor(.black)
-                        }
-                    }
-                    .frame(width: geometry.size.width, height: 200)
-                    
-                    
-                    
-                    
-                }
-            }*/
         }
         .foregroundColor(.black)
-        .onTapGesture {
-            scannerCardShowing = false
-        }
         .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: recognizedText, perform: { _ in
-            displayResult()
+        .onChange(of: scanManager.recognizedText, perform: { _ in
+            scanManager.displayResult()
+        })
+        .onDisappear(perform: {
+            scanManager.scanState = .notFound
         })
     }
 }
@@ -183,6 +150,6 @@ struct ScanView: View {
 
 struct ScanView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanView(recognizedText: .constant(""))
+        ScanView()
     }
 }

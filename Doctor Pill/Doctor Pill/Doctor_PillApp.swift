@@ -9,20 +9,19 @@ import SwiftUI
 
 @main
 struct Doctor_PillApp: App {
-//    @StateObject var registerManager = RegisterManager()
     @StateObject var tratamentosManager = TratamentosManager()
     @StateObject var tabBarManager = TabBarManager(customItemIndex: 2)
     @StateObject var feedManager = FeedManager()
+    @StateObject var scanManager = ScanManager()
 
     var body: some Scene {
         WindowGroup {
             TabBarView()
                 .colorScheme(.light)
-                .environmentObject(registerManager)
-//                .environmentObject(registerManager)
                 .environmentObject(tratamentosManager)
                 .environmentObject(tabBarManager)
                 .environmentObject(feedManager)
+                .environmentObject(scanManager)
         }
     }
 }

@@ -30,6 +30,5 @@ final class SpeechManager: NSObject {
         utterance.volume = 100.0
 
         speechSynthesizer.speak(utterance)
-        print(AVSpeechSynthesisVoice.speechVoices())
       }
 }
