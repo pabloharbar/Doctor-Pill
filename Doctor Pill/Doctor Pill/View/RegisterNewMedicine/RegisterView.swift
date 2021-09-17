@@ -69,7 +69,7 @@ struct RegisterView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.purple)
+                .background(Color("DarkNight"))
                 .cornerRadius(24)
             })
             .padding(.bottom,40)

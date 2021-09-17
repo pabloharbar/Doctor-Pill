@@ -105,16 +105,16 @@ enum Instrucoes: String, Codable, CaseIterable {
     }
 }
 
-enum FormatoRemedio: Int, Codable {
+enum FormatoRemedio: Int, Codable, CaseIterable {
     case redondo
     case quadrado
     case piramidal
     case capsula
 }
 
-enum FrequenciaRemedo: String, Codable {
-    case dias
-    case semanas
+enum FrequenciaRemedo: String, Codable, CaseIterable {
+    case dias = "Dias"
+    case semanas = "Semanas"
 }
 
 struct Remedio: Equatable, Codable {

@@ -9,17 +9,16 @@ import SwiftUI
 
 struct ListInputView: View {
     @EnvironmentObject var registerManager: RegisterManager
-    let state = 3
+
     @State var minutes: Date = Date()
     
     var body: some View {
-        createListInput(registerManager: registerManager)
+        createListInput()
     }
     
-    fileprivate func createListInput(registerManager: RegisterManager) -> some View {
-        
-//        switch registerManager.progressState {
-        switch state {
+    fileprivate func createListInput() -> some View {
+
+        switch registerManager.progressState {
         case 1:
             return AnyView(VStack {
                 HStack {
@@ -54,12 +53,84 @@ struct ListInputView: View {
                     Spacer()
                 }
                 Divider()
-                Divider()
-                List {
+                HStack(spacing: 5) {
+                    Picker(selection: $registerManager.quantidade, label: Text("Quantidade"), content: {
+                        ForEach(1...10, id: \.self) { i in
+                            Text("\(i)")
+                                .tag(registerManager.tipo == .meioComprimido ? Float(i) / 2 : Float(i))
+                        }
+                    })
+                    .frame(width: 40, height: 50)
+                    .clipped()
                     
-                    ListTextField(label: "Nome", text: $registerManager.nome)
-                    ListTextField(label: "Posologia", text: $registerManager.nome)
+                    Picker(selection: $registerManager.tipo, label: Text("Tipo"), content: {
+                        ForEach(TipoRemedio.allCases, id:\.self) { formato in
+                            Text(formato.rawValue)
+                            
+                        }
+                    })
+                    .frame(width: 150, height: 50, alignment: .center)
+                    .clipped()
+                    
+                    Text(", ")
+                    
+                    Picker(selection: $registerManager.vezesAoDia, label: Text("Tipo"), content: {
+                        ForEach(1...5, id:\.self) { i in
+                            Text("\(i)")
+                                .tag(i)
+                            
+                        }
+                    })
+                    .frame(width: 40, height: 50, alignment: .center)
+                    .clipped()
+                    
+                    Text(registerManager.vezesAoDia > 1 ? " vezes ao dia" : " vez ao dia")
                 }
+                .padding()
+                Divider()
+                HStack {
+                    Text("Formato")
+                    Spacer()
+                    Picker(selection: $registerManager.formato, label: Text("Formato"), content: {
+                        ForEach(FormatoRemedio.allCases, id: \.self) { formato in
+                            Text("\(formato.rawValue)")
+                                .tag(formato)
+                        }
+                    })
+                    .frame(width: 100, height: 50, alignment: .center)
+                    .clipped()
+                }
+                .padding(.horizontal)
+                Divider()
+                Toggle(isOn: $registerManager.usoContinuo, label: {
+                    Text("Contínuo")
+                })
+                .padding(.horizontal)
+                .toggleStyle(SwitchToggleStyle(tint: Color("DarkNight")))
+                Divider()
+                HStack {
+                    Text("Não Contínuo")
+                    Spacer()
+                    Text("por")
+                    Picker(selection: $registerManager.duracao, label: Text("Duração"), content: {
+                        ForEach(1...100, id: \.self) { i in
+                            Text("\(i)")
+                                .tag(i)
+                        }
+                    })
+                    .frame(width: 50, height: 50, alignment: .center)
+                    .clipped()
+                    Picker(selection: $registerManager.frequencia, label: Text("Frequência"), content: {
+                        ForEach(FrequenciaRemedo.allCases, id: \.self) { i in
+                            Text(i.rawValue)
+                                .tag(i)
+                        }
+                    })
+                    .frame(width: 120, height: 50, alignment: .center)
+                    .clipped()
+                }
+                .padding(.horizontal)
+                Divider()
             })
             
         case 3:
@@ -78,6 +149,8 @@ struct ListInputView: View {
                     ForEach((1...registerManager.vezesAoDia), id: \.self) { count in
                         HStack {
                             Text("\(Int(registerManager.quantidade)) comprimido" + (registerManager.quantidade >= 1 ? " às" : "s às"))
+                                .font(.system(size: 20))
+                                .fontWeight(.semibold)
                             Spacer()
                             DatePicker("Pick a date", selection: $minutes, displayedComponents: .hourAndMinute)
                                 .datePickerStyle(GraphicalDatePickerStyle())
@@ -85,9 +158,9 @@ struct ListInputView: View {
                         }
                     }
                 }
-                .onAppear {
-                    UITableView.appearance().isScrollEnabled = false
-                }
+//                .onAppear {
+//                    UITableView.appearance().isScrollEnabled = false
+//                }
             })
             
         case 4:
