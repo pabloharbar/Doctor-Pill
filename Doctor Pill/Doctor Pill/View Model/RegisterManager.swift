@@ -85,4 +85,15 @@ final class RegisterManager: ObservableObject {
 //        tratamento.adicionarRemedio(remedio)
     }
     
+    func manageConditionList(condition: Instrucoes) {
+        if !self.instrucoes.contains(condition) {
+            self.instrucoes.append(condition)
+        } else {
+            let index = self.instrucoes.firstIndex(of: condition)!
+            self.instrucoes.remove(at: index)
+        }
+        
+        
+    }
+    
 }

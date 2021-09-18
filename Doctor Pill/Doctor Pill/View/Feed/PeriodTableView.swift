@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PeriodTableView: View {
     @EnvironmentObject var remediosManager: RemediosManager
+    @EnvironmentObject var feedManager: FeedManager
     
     @State var remediosHoje: [PeriodosDoDia: [(remedio: Remedio, horario: Date)]] = [
         .manha: [],
@@ -40,7 +41,9 @@ struct PeriodTableView: View {
                     let remedio = remedioHora.remedio
                     let horario = remedioHora.horario
                     
-                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas)
+                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas, scannerButtonEnabled: true)
+                        .environmentObject(feedManager)
+                        
                 }
             }
             
@@ -60,7 +63,8 @@ struct PeriodTableView: View {
                     let remedio = remedioHora.remedio
                     let horario = remedioHora.horario
                     
-                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas)
+                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas, scannerButtonEnabled: true)
+                        .environmentObject(feedManager)
                 }
             }
             
@@ -80,7 +84,8 @@ struct PeriodTableView: View {
                     let remedio = remedioHora.remedio
                     let horario = remedioHora.horario
                     
-                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas)
+                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas, scannerButtonEnabled: true)
+                        .environmentObject(feedManager)
                 }
             }
         }

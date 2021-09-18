@@ -11,6 +11,7 @@ struct FeedView: View {
     @State var registerSheetIsShowing = false
     @State var scrollToTarget: Int?
     @EnvironmentObject var feedManager: FeedManager
+    @EnvironmentObject var scanManager: ScanManager
     
     var body: some View {
         VStack {
@@ -42,6 +43,7 @@ struct FeedView: View {
                             .padding(.bottom)
                         
                         PeriodTableView()
+                            .environmentObject(feedManager)
                     }
                     .onChange(of: scrollToTarget) { target in
                         if let target = target {
@@ -58,6 +60,13 @@ struct FeedView: View {
         .fullScreenCover(isPresented: $registerSheetIsShowing, content: {
             RegisterView()
                 .colorScheme(.light)
+        })
+        .fullScreenCover(isPresented: $feedManager.scannerCardShowing,onDismiss: {
+            feedManager.scannerCardShowing = false
+        } , content: {
+            MedicineScanView()
+                .colorScheme(.light)
+                .environmentObject(scanManager)
         })
     }
 }

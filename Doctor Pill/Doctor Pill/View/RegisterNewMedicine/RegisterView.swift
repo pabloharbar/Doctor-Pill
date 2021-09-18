@@ -49,9 +49,9 @@ struct RegisterView: View {
                 Spacer()
                 
                 if let horario = registerManager.horarios[0] {
-                    PreviewCardView(hora: getHourString(horario), nome: registerManager.nome, intrucoes: registerManager.instrucoes, posologia: registerManager.posologia, notas: registerManager.notas)
+                    PreviewCardView(hora: getHourString(horario), nome: registerManager.nome, intrucoes: registerManager.instrucoes, posologia: registerManager.posologia, notas: registerManager.notas, scannerButtonEnabled: false)
                 } else {
-                    PreviewCardView(hora: "Horário", nome: registerManager.nome, intrucoes: registerManager.instrucoes, posologia: registerManager.posologia, notas: registerManager.notas)
+                    PreviewCardView(hora: "Horário", nome: registerManager.nome, intrucoes: registerManager.instrucoes, posologia: registerManager.posologia, notas: registerManager.notas, scannerButtonEnabled: false)
                 }
             }
             .padding(.bottom, 24)

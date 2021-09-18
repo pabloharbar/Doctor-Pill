@@ -20,6 +20,7 @@ struct TabBarView: View {
                     Label("Minha Rotina", systemImage: "calendar")
                 }
                 .tag(1)
+                .environmentObject(scanManager)
             
             PreScanView()
                 .tabItem {

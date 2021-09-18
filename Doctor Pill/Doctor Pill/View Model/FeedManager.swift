@@ -10,12 +10,14 @@ import SwiftUI
 
 final class FeedManager: ObservableObject {
     @Published var daySelected: DiasDaSemana
+    @Published var scannerCardShowing: Bool
     
     let now = Date(timeIntervalSinceNow: 0)
     let calendar = Calendar.current
     
     init() {
         self.daySelected = DiasDaSemana.init(rawValue: calendar.component(.weekday, from: now) - 1)! //enum começa em 0
+        self.scannerCardShowing = false
     }
     
     func createDateLabel() -> String {

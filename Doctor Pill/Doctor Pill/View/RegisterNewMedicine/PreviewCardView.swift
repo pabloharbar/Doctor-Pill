@@ -24,6 +24,8 @@ struct PreviewCardView: View {
     var intrucoes: [Instrucoes]
     var posologia: String
     var notas: String
+    let scannerButtonEnabled: Bool
+    @EnvironmentObject var feedManager: FeedManager
     
     fileprivate func detalhesRemedio() -> some View {
         return HStack(spacing: 12) {
@@ -43,7 +45,11 @@ struct PreviewCardView: View {
         return VStack(spacing: 0) {
             CustomDivider()
             
-            Button(action: {}) {
+            Button(action: {
+                if scannerButtonEnabled {
+                    feedManager.scannerCardShowing = true
+                }
+            }) {
                 HStack {
                     Image(systemName: "camera.fill")
                     Text("Escanear")
@@ -150,7 +156,8 @@ struct PreviewCardView_Previews: PreviewProvider {
                 .bebidaAlcoolica
             ],
             posologia: "200mg",
-            notas: "Lorem ipsum dolor sit amet, consectetur adi"
+            notas: "Lorem ipsum dolor sit amet, consectetur adi",
+            scannerButtonEnabled: false
         )
     }
 }
