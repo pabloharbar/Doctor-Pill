@@ -14,12 +14,18 @@ struct ConditionsListView: View {
         VStack {
             ForEach(Instrucoes.allCases, id: \.self) { condition in
                 Button(action: {
-                    
+                    registerManager.manageConditionList(condition: condition)
                 }, label: {
                     HStack {
                         condition.getImage()
                         Text(condition.rawValue)
                         Spacer()
+                        if registerManager.instrucoes
+                            .contains(condition) {
+                            Image(systemName: "checkmark")
+                                .font(.headline)
+                                .foregroundColor(Color("CheckmarkRed"))
+                        }
                     }
                     .padding(.horizontal)
                 })
