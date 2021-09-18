@@ -73,7 +73,7 @@ struct PreviewCardView: View {
             Image(systemName: "checkmark")
                 .font(.title2)
                 .frame(width: 57, height: 57)
-                .background(Color.green)
+                .background(Color("PreviewGreen"))
         }
         .clipShape(Circle())
         .buttonStyle(PlainButtonStyle())
@@ -119,7 +119,7 @@ struct PreviewCardView: View {
                         .background(Color.white)
                         .cornerRadius(20, corners: [.topLeft, .topRight])
                     }
-                    .background(Color.green)
+                    .background(Color("PreviewGreen"))
                     .cornerRadius(20, corners: [.topLeft, .topRight])
                     
                     botaoScanner()

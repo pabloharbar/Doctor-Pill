@@ -10,7 +10,7 @@ import Foundation
 final class ScanManager: ObservableObject {
     @Published var scanState: ScanState
     @Published var recognizedText: String {
-        didSet {
+        willSet {
             if recognizedText.last == "©" || recognizedText.last == "℗" || recognizedText.last == "®" || recognizedText.last == "™" {
                 recognizedText.dropLast()
             }

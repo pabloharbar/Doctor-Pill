@@ -11,7 +11,7 @@ struct ConditionsListView: View {
     @EnvironmentObject var registerManager: RegisterManager
     
     var body: some View {
-        List {
+        VStack {
             ForEach(Instrucoes.allCases, id: \.self) { condition in
                 Button(action: {
                     
@@ -19,9 +19,12 @@ struct ConditionsListView: View {
                     HStack {
                         condition.getImage()
                         Text(condition.rawValue)
+                        Spacer()
                     }
+                    .padding(.horizontal)
                 })
                 .buttonStyle(PlainButtonStyle())
+                Divider()
             }
         }
     }

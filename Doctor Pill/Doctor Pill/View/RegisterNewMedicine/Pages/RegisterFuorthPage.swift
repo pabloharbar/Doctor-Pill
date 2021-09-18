@@ -11,7 +11,7 @@ struct RegisterFuorthPage: View {
     @EnvironmentObject var registerManager: RegisterManager
     
     var body: some View {
-        VStack {
+        ScrollView {
             HStack {
                 Text("NOTAS")
                     .font(.system(size: 13))
