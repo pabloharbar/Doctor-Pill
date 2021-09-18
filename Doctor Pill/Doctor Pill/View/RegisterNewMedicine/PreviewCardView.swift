@@ -19,11 +19,11 @@ struct CustomDivider: View {
 }
 
 struct PreviewCardView: View {
-    @Binding var hora: String
-    @Binding var nome: String
-    @Binding var intrucoes: [Instrucoes]
-    @Binding var posologia: String
-    @Binding var notas: String
+    var hora: String
+    var nome: String
+    var intrucoes: [Instrucoes]
+    var posologia: String
+    var notas: String
     
     fileprivate func detalhesRemedio() -> some View {
         return HStack(spacing: 12) {
@@ -85,6 +85,7 @@ struct PreviewCardView: View {
                 ConditionView(amount: 0, image: instrucao.getImage())
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var body: some View {
@@ -140,16 +141,16 @@ struct PreviewCardView: View {
 struct PreviewCardView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewCardView(
-            hora: .constant("10:00"),
-            nome: .constant("Dipirona"),
-            intrucoes: .constant([
+            hora: "10:00",
+            nome: "Dipirona",
+            intrucoes: [
                 .jejum,
                 .agua,
                 .aoAcordar,
                 .bebidaAlcoolica
-            ]),
-            posologia: .constant("200mg"),
-            notas: .constant("Lorem ipsum dolor sit amet, consectetur adi")
+            ],
+            posologia: "200mg",
+            notas: "Lorem ipsum dolor sit amet, consectetur adi"
         )
     }
 }

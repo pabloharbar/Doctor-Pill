@@ -7,15 +7,23 @@
 
 import SwiftUI
 
-enum PeriodosDoDia {
-    case manha
-    case tarde
-    case noite
-}
-
 struct PeriodTableView: View {
+    @EnvironmentObject var remediosManager: RemediosManager
+    
+    @State var remediosHoje: [PeriodosDoDia: [(remedio: Remedio, horario: Date)]] = [
+        .manha: [],
+        .tarde: [],
+        .noite: []
+    ]
+    
+    func getHourString(_ date: Date) -> String {
+        let hour = Calendar.current.component(.hour, from: date)
+        let minute = Calendar.current.component(.minute, from: date)
+        return "\(hour):\(minute)"
+    }
+    
     var body: some View {
-        VStack {
+        VStack {            
             HStack(spacing: 20) {
                 Text("\(Image(systemName: "sunrise")) Manhã")
                     .fontWeight(.bold)
@@ -27,8 +35,14 @@ struct PeriodTableView: View {
             .padding()
             .font(.system(size: 22))
             
-            MedicineCardView()
-            MedicineCardView()
+            if let remedios = remediosHoje[.manha] {
+                ForEach(remedios, id: \.self.remedio.id) { remedioHora in
+                    let remedio = remedioHora.remedio
+                    let horario = remedioHora.horario
+                    
+                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas)
+                }
+            }
             
             HStack(spacing: 20) {
                 Text("\(Image(systemName: "sun.max")) Tarde")
@@ -41,8 +55,14 @@ struct PeriodTableView: View {
             .padding()
             .font(.system(size: 22))
             
-            MedicineCardView()
-            MedicineCardView()
+            if let remedios = remediosHoje[.tarde] {
+                ForEach(remedios, id: \.self.remedio.id) { remedioHora in
+                    let remedio = remedioHora.remedio
+                    let horario = remedioHora.horario
+                    
+                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas)
+                }
+            }
             
             HStack(spacing: 20) {
                 Text("\(Image(systemName: "moon.stars")) Noite")
@@ -55,8 +75,24 @@ struct PeriodTableView: View {
             .padding()
             .font(.system(size: 22))
             
-            MedicineCardView()
-            MedicineCardView()
+            if let remedios = remediosHoje[.noite] {
+                ForEach(remedios, id: \.self.remedio.id) { remedioHora in
+                    let remedio = remedioHora.remedio
+                    let horario = remedioHora.horario
+                    
+                    PreviewCardView(hora: getHourString(horario), nome: remedio.nome, intrucoes: remedio.instrucoes, posologia: remedio.posologia, notas: remedio.notas)
+                }
+            }
+        }
+        .onAppear {
+            print("apareceu!")
+            remediosHoje = remediosManager.remediosHojePorTurno()
+            print(remediosHoje)
+        }
+        .onChange(of: remediosManager.remedios) { _ in
+            print("Tem remédio novo na área!")
+            remediosHoje = remediosManager.remediosHojePorTurno()
+            print(remediosHoje)
         }
     }
 
@@ -65,5 +101,6 @@ struct PeriodTableView: View {
 struct PeriodTableView_Previews: PreviewProvider {
     static var previews: some View {
         PeriodTableView()
+            .environmentObject(RemediosManager.fullState())
     }
 }

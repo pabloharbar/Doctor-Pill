@@ -11,9 +11,15 @@ struct ListTextField: View {
     let label: String
     @Binding var text: String
     @State var showTextField = false
+    var onFocus: () -> Void = {}
     
     func clearText() {
-        text = ""
+        if text.isEmpty {
+            showTextField = false
+            UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true) // Hide default keyboard if open
+        } else {
+            text = ""
+        }
     }
 
     var body: some View {
@@ -25,6 +31,7 @@ struct ListTextField: View {
                 
                 Button(action: {
                     self.showTextField = true
+                    onFocus()
                 }) {
                     HStack(spacing: 11) {
                         Text(text)
@@ -36,11 +43,12 @@ struct ListTextField: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             }
+            .contentShape(Rectangle())
             .zIndex(0)
             .offset(x: showTextField ? -UIScreen.main.bounds.width : 0)
 
             HStack(spacing: 2) {
-                TextField(label, text: $text, onCommit: {
+                FocusableTextField(label, text: $text, isFirstResponder: $showTextField, onCommit: {
                     self.showTextField = false
                 })
 
@@ -48,10 +56,16 @@ struct ListTextField: View {
                     Image(systemName: "xmark.circle.fill")
                 }
                 .buttonStyle(PlainButtonStyle())
-                .foregroundColor(.primary)
+                .foregroundColor(Color(UIColor.placeholderText))
             }
+            .contentShape(Rectangle())
             .zIndex(10)
             .offset(x: showTextField ? 0 : UIScreen.main.bounds.width)
+        }
+        .ignoresSafeArea(.keyboard)
+        .onTapGesture {
+            self.showTextField = true
+            onFocus()
         }
         .animation(.default)
         .font(.body)

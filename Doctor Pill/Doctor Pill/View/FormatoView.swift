@@ -7,28 +7,13 @@
 
 import SwiftUI
 
-struct InstrucoesPadrao: Hashable {
-    let name: String
-    let image: Image
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-    }
-}
-
-struct TiposPadrao {
-    let name: String
-    let image: Image
-}
-
 struct FormatoView: View {
-    let formatosPadroes: [InstrucoesPadrao] = TratamentosManager.instrucoesPadrao
     var body: some View {
         List {
-            ForEach(formatosPadroes, id: \.self) { formato in
+            ForEach(Instrucoes.allCases, id: \.self) { instrucao in
                 HStack {
-                    formato.image
-                    Text(formato.name)
+                    instrucao.getImage()
+                    Text(instrucao.rawValue)
                 }
                 .padding(.leading)
                 .font(.system(size: 17))

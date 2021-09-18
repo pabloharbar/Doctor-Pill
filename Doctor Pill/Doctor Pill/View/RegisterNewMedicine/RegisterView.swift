@@ -11,7 +11,13 @@ struct RegisterView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @StateObject var registerManager = RegisterManager()
-    @State var nomeDoRemedio = ""
+    @EnvironmentObject var remediosManager: RemediosManager
+    
+    func getHourString(_ date: Date) -> String {
+        let hour = Calendar.current.component(.hour, from: date)
+        let minute = Calendar.current.component(.minute, from: date)
+        return "\(hour):\(minute)"
+    }
     
     var body: some View {
         VStack {
@@ -40,18 +46,23 @@ struct RegisterView: View {
                     .padding()
                 }
                 .padding(.horizontal)
-                
                 Spacer()
                 
+                if let horario = registerManager.horarios[0] {
+                    PreviewCardView(hora: getHourString(horario), nome: registerManager.nome, intrucoes: registerManager.instrucoes, posologia: registerManager.posologia, notas: registerManager.notas)
+                } else {
+                    PreviewCardView(hora: "Horário", nome: registerManager.nome, intrucoes: registerManager.instrucoes, posologia: registerManager.posologia, notas: registerManager.notas)
+                }
             }
-            .padding(.top,50)
+            .padding(.bottom, 24)
             .background(
                 LinearGradient(gradient: Gradient(colors: [Color(red: 208/255, green: 219/255, blue: 1), Color(red: 127/255, green: 155/255, blue: 251/255)]), startPoint: .bottomLeading, endPoint: .topTrailing)
+                    .cornerRadius(24, corners: [.bottomLeft,.bottomRight])
+                    .edgesIgnoringSafeArea(.top)
             )
-            .cornerRadius(24, corners: [.bottomLeft,.bottomRight]) //Extension
-            .ignoresSafeArea()
             
             Spacer()
+            
             ListInputView()
                 .environmentObject(registerManager)
 
@@ -59,8 +70,14 @@ struct RegisterView: View {
                 .padding()
             
             Button(action: {
-                registerManager.progressState += 1
-            }, label: {
+                if registerManager.progressState < 4 {
+                    registerManager.progressState += 1
+                } else {
+                    let remedio = registerManager.criarRemedio()
+                    remediosManager.adicionarRemedio(remedio)
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }) {
                 HStack {
                     Spacer()
                     Text(registerManager.progressState == 4 ? "Adicionar" : "Próximo")
@@ -71,17 +88,19 @@ struct RegisterView: View {
                 .padding()
                 .background(Color("DarkNight"))
                 .cornerRadius(24)
-            })
+            }
             .padding(.bottom,40)
             .padding(.horizontal,70)
-            
         }
-        }
+        .background(Color.white.edgesIgnoringSafeArea(.all))
+        .ignoresSafeArea(.keyboard)
     }
+}
 
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
+            .environmentObject(RemediosManager())
     }
 }

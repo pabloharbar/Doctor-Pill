@@ -54,19 +54,18 @@ struct FeedView: View {
                     }
                 }
             }
-            
-            
         }
         .fullScreenCover(isPresented: $registerSheetIsShowing, content: {
             RegisterView()
+                .colorScheme(.light)
         })
     }
-    
 }
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView()
             .environmentObject(FeedManager())
+            .environmentObject(RemediosManager.fullState())
     }
 }

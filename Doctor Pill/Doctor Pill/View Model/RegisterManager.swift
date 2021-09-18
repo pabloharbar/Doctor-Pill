@@ -15,12 +15,24 @@ final class RegisterManager: ObservableObject {
 //    @Published var foto: Image?
     @Published var nome: String
     @Published var posologia: String
-    @Published var tratamento: Tratamento
+//    @Published var tratamento: Tratamento
     
     /* Informações da segunda página */
-    @Published var quantidade: Float
+    @Published var quantidade: Double
     @Published var tipo: TipoRemedio
-    @Published var vezesAoDia: Int
+    @Published var vezesAoDia: Int {
+        didSet {
+            if oldValue < vezesAoDia {
+                for _ in oldValue..<vezesAoDia {
+                    self.horarios.append(Date())
+                }
+            } else {
+                for index in stride(from: oldValue - 1, through: vezesAoDia, by: -1) {
+                    self.horarios.remove(at: index)
+                }
+            }
+        }
+    }
     @Published var formato: FormatoRemedio
     @Published var continuidade: (duracao: Int, frequencia: FrequenciaRemedo)?
     
@@ -39,13 +51,13 @@ final class RegisterManager: ObservableObject {
         self.progressState = 1
         self.nome = ""
         self.posologia = ""
-        self.tratamento = Tratamento(remedios: [], proposito: "")
+//        self.tratamento = Tratamento(remedios: [], proposito: "")
         self.quantidade = 1.0
         self.tipo = .comprimido
         self.vezesAoDia = 1
         self.formato = .redondo
         self.continuidade = nil
-        self.horarios = []
+        self.horarios = [Date()]
         self.notas = ""
         self.instrucoes = []
         
@@ -54,7 +66,7 @@ final class RegisterManager: ObservableObject {
         self.frequencia = .dias
     }
     
-    func salvarRemedio() {
+    func criarRemedio() -> Remedio {
         let remedio = Remedio(
             nome: nome,
             posologia: posologia,
@@ -67,8 +79,10 @@ final class RegisterManager: ObservableObject {
             instrucoes: instrucoes,
             notas: notas
         )
+        
+        return remedio
 
-        tratamento.adicionarRemedio(remedio)
+//        tratamento.adicionarRemedio(remedio)
     }
     
 }

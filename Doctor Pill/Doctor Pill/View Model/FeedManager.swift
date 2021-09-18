@@ -22,7 +22,7 @@ final class FeedManager: ObservableObject {
         var offset = 0
         let currentDayIsSelected = daySelected.rawValue + 1 == calendar.component(.weekday, from: now)
         
-        if  !currentDayIsSelected {
+        if !currentDayIsSelected {
             offset = daySelected.rawValue + 1 - calendar.component(.weekday, from: now)
         }
         

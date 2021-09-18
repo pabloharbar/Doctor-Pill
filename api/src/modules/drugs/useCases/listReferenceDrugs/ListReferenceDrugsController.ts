@@ -23,6 +23,7 @@ class ListReferenceDrugsController {
     const uniqueDrugs = Array.from(new Set(drugs.flatMap((drug) => drug.name)))
 
     return res.json({
+      sent: name,
       name: drugName,
       active_principle,
       similars: uniqueDrugs,

@@ -24,6 +24,13 @@ enum TipoRemedio: String, Codable, CaseIterable {
     case gotas = "Gotas"
     case xarope = "Xarope"
     
+    static func allCasesWithouHalfTablet() -> [TipoRemedio] {
+        var cases = TipoRemedio.allCases
+        cases.removeAll { $0 == .meioComprimido }
+
+        return cases
+    }
+    
     func getImage() -> Image {
         switch self {
         case .comprimido:
@@ -117,11 +124,11 @@ enum FrequenciaRemedo: String, Codable, CaseIterable {
     case semanas = "Semanas"
 }
 
-struct Remedio: Equatable, Codable {
+struct Remedio: Equatable, Codable, Hashable {
     let id: UUID
     let nome: String
     let posologia: String
-    let quantidade: Float
+    let quantidade: Double
     let tipo: TipoRemedio
     let formato: FormatoRemedio
     let vezesAoDia: Int
@@ -132,7 +139,7 @@ struct Remedio: Equatable, Codable {
     let notas: String
     //    let foto: Data?
     
-    init(nome: String, posologia: String, quantidade: Float, tipo: TipoRemedio, formato: FormatoRemedio, vezesAoDia: Int, continuidade: (duracao: Int, frequencia: FrequenciaRemedo)?, horarios: [Date], instrucoes: [Instrucoes], notas: String, id: UUID = UUID()) {
+    init(nome: String, posologia: String, quantidade: Double, tipo: TipoRemedio, formato: FormatoRemedio, vezesAoDia: Int, continuidade: (duracao: Int, frequencia: FrequenciaRemedo)?, horarios: [Date], instrucoes: [Instrucoes], notas: String, id: UUID = UUID()) {
         self.id = id
         self.nome = nome
         self.posologia = posologia
@@ -164,5 +171,9 @@ struct Remedio: Equatable, Codable {
     
     static func == (lhs: Remedio, rhs: Remedio) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

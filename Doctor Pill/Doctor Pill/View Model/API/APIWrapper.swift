@@ -11,7 +11,7 @@ class APIWrapper {
     
     func fetchSimilars(recognizedText: String, completion: @escaping (Data) -> Void) {
         
-        var components = URLComponents(string: "http://186.214.192.214/similar")!
+        var components = URLComponents(string: "http://192.168.15.46:3333/similar")!
         
         let queryItem = URLQueryItem(name: "name", value: recognizedText)
         components.queryItems = [queryItem]
