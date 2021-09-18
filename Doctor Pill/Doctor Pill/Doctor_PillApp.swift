@@ -15,6 +15,7 @@ struct Doctor_PillApp: App {
     
     @StateObject var tabBarManager = TabBarManager(customItemIndex: 2)
     @StateObject var feedManager = FeedManager()
+    @StateObject var scanManager = ScanManager()
 
     var body: some Scene {
         WindowGroup {
@@ -25,6 +26,7 @@ struct Doctor_PillApp: App {
                 .environmentObject(diaManager)
                 .environmentObject(tabBarManager)
                 .environmentObject(feedManager)
+                .environmentObject(scanManager)
         }
     }
 }
