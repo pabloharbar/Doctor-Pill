@@ -19,7 +19,7 @@ class RemediosManager: ObservableObject {
     
     init() {
         //Pega do UserDefaults
-        self.remedios = []
+        self.remedios = UserDefaultsWrapper.fetchRemedios() ?? []
     }
     
     static func fullState() -> RemediosManager {
@@ -36,54 +36,12 @@ class RemediosManager: ObservableObject {
     
     func adicionarRemedio(_ remedio: Remedio) {
         remedios.append(remedio)
+        UserDefaultsWrapper.setRemedios(model: remedios)
     }
     
     func removerRemedio(_ remedio: Remedio) {
         remedios.removeAll { remedioLista in
             return remedio.id == remedioLista.id
         }
-    }
-    
-    func remediosHojePorTurno() -> [PeriodosDoDia: [(remedio: Remedio, horario: Date)]] {
-        var manha: [(Remedio, Date)] = []
-        var tarde: [(Remedio, Date)] = []
-        var noite: [(Remedio, Date)] = []
-        
-        for remedio in remedios {
-            for horario in remedio.horarios {
-                let calendar = Calendar.current
-                let componentesHorario = Calendar.current.dateComponents([.hour, .minute], from: horario)
-                
-                let componentesManha = DateComponents(hour: 5, minute: 0)
-                let componentesTarde = DateComponents(hour: 12, minute: 0)
-                let componentesNoite = DateComponents(hour: 18, minute: 0)
-                let horaManha = calendar.date(from: componentesManha)!
-                let horaTarde = calendar.date(from: componentesTarde)!
-                let horaNoite = calendar.date(from: componentesNoite)!
-                let horarioBase = calendar.date(from: componentesHorario)!
-                
-                print(horario)
-                print(horaManha)
-                print(horaTarde)
-                print(horaNoite)
-                
-                if horarioBase >= horaManha && horarioBase < horaTarde {
-                    // Horário é de manhã
-                    manha.append((remedio, horario))
-                } else if horarioBase >= horaTarde && horarioBase < horaNoite {
-                    // Horário é de tarde
-                    tarde.append((remedio, horario))
-                } else {
-                    // Horário é de noite
-                    noite.append((remedio, horario))
-                }
-            }
-        }
-        
-        return [
-            .manha: manha,
-            .tarde: tarde,
-            .noite: noite
-        ]
     }
 }

@@ -25,11 +25,15 @@ struct PreviewCardView: View {
     var posologia: String
     var notas: String
     let scannerButtonEnabled: Bool
+    var onCheck: () -> Void = {}
     @EnvironmentObject var feedManager: FeedManager
     
     fileprivate func detalhesRemedio() -> some View {
         return HStack(spacing: 12) {
-            Circle().frame(width: 50, height: 50)
+            Circle()
+                .fill(Color.white)
+                .frame(width: 50, height: 50)
+                .overlay(Circle().stroke(lineWidth: 1))
             VStack(alignment: .leading, spacing: 4) {
                 Text(nome)
                     .font(.title2)
@@ -75,7 +79,7 @@ struct PreviewCardView: View {
     }
     
     fileprivate func botaoConfirmar() -> some View {
-        return Button(action: {}) {
+        return Button(action: self.onCheck) {
             Image(systemName: "checkmark")
                 .font(.title2)
                 .frame(width: 57, height: 57)
