@@ -11,7 +11,6 @@ import SwiftUI
 struct Doctor_PillApp: App {
 //    @StateObject var registerManager = RegisterManager()
     @StateObject var remediosManager = RemediosManager.fullState()
-    @StateObject var diaManager = DiaManager()
     
     @StateObject var tabBarManager = TabBarManager(customItemIndex: 2)
     @StateObject var feedManager = FeedManager()
@@ -23,7 +22,6 @@ struct Doctor_PillApp: App {
                 .colorScheme(.light)
 //                .environmentObject(registerManager)
                 .environmentObject(remediosManager)
-                .environmentObject(diaManager)
                 .environmentObject(tabBarManager)
                 .environmentObject(feedManager)
                 .environmentObject(scanManager)
