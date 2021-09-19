@@ -10,25 +10,9 @@ import SwiftUI
 struct MedicineScanView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var scanManager: ScanManager
-    
-    @State var scannerCardShowing = false
-    
+    @EnvironmentObject var feedManager: FeedManager
     
     var speechManager = SpeechManager()
-    
-    let apiWrapper = APIWrapper()
-    
-    func displayResult() {
-        //Chamar a api
-        apiWrapper.decodeSimilars(recognizedText: scanManager.recognizedText) { similars in
-            print(similars)
-            if !similars.isEmpty {
-                //É o remedio certo
-                scanManager.hasFoundCorrect = true
-                scanManager.scanState = .found
-            }
-        }
-    }
     
     func HoleShapeMask(in rect: CGRect) -> Path {
         var shape = RoundedRectangle(cornerRadius: 29).path(in: rect)
@@ -117,49 +101,32 @@ struct MedicineScanView: View {
 
             closeButton()
 
-            Text(scanManager.recognizedText)
-                .padding()
-                .offset(y: 250)
-                .foregroundColor(.white)
+//            Text(scanManager.recognizedText)
+//                .padding()
+//                .offset(y: 250)
+//                .foregroundColor(.white)
 
             scannerAim()
             
-            if scannerCardShowing {
-                ScannerCheckModalView(modalShowing: $scannerCardShowing)
-            }
-            
-            /*GeometryReader { geometry in
+            if scanManager.scannerCardShowing || true {
                 VStack {
                     Spacer()
-                    VStack {
-                        Button(action: {
-                            if scanState != .found {
-                                self.speechManager.speak(text: scanState == .notFound ? "Continue escaneando até achar um remédio" : scanState == .notRegistered ? "Esse remédio não está cadastrado no seu App." : "")
-                            } else {
-                                scannerCardShowing = true
-                            }
-
-                        }) {
-                            ScanButtonView(scanState: $scanState)
-                                .foregroundColor(.black)
-                        }
-                    }
-                    .frame(width: geometry.size.width, height: 200)
-                    
-                    
-                    
-                    
+                    ScannerCheckModalView(hora: feedManager.medicineToSearch!.horário, nome: feedManager.medicineToSearch!.nome, intrucoes: feedManager.medicineToSearch!.instrucoes, posologia: feedManager.medicineToSearch!.posologia, scannerButtonEnabled: false)
+                        .offset(y: -120)
+                    Spacer()
                 }
-            }*/
+            }
+            
         }
         .foregroundColor(.black)
         .onTapGesture {
-            scannerCardShowing = false
+            scanManager.scanState = .notFound
+            scanManager.scannerCardShowing = false
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: scanManager.recognizedText, perform: { _ in
-            displayResult()
+            scanManager.displaySpecificResult(nome: feedManager.medicineToSearch!.nome)
         })
     }
 }

@@ -8,64 +8,106 @@
 import SwiftUI
 
 struct ScannerCheckModalView: View {
-    @Binding var modalShowing: Bool
-    var body: some View {
-        ZStack {
-            VStack {
-                HStack(alignment: .top) {
-                    Image(systemName: "infinity.circle")
-                        .font(.system(size: 36))
-                    VStack(alignment: .leading) {
-                        Text("Nome do remédio")
-                            .font(.system(size: 17))
-                            .fontWeight(.semibold)
-                        Text("Nome do tratamento/função")
-                            .font(.system(size: 12))
-                    }
-                    
-                    Spacer()
-                    Button(action: {
-                        modalShowing = false
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.black)
-                    })
-                }
-                HStack {
-                    Text("09 : 41")
-                        .font(.system(size: 22))
-                        .padding(.horizontal)
-                    Spacer()
-                    Image(systemName: "pills")
-                        .font(.system(size: 24))
-                        .padding(.horizontal)
-                }
-                .padding(.vertical)
-                Button("OUVIR CARD NOVAMENTE") {
-                    
-                }
-                .font(.system(size: 14))
-                .foregroundColor(.black)
-                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                .background(Color.green)
-                .border(Color.black, width: 1)
+    var hora: String
+    var nome: String
+    var intrucoes: [Instrucoes]
+    var posologia: String
+    let scannerButtonEnabled: Bool
+    @EnvironmentObject var feedManager: FeedManager
+    
+    fileprivate func detalhesRemedio() -> some View {
+        return HStack(spacing: 12) {
+            Circle().frame(width: 50, height: 50)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(nome)
+                    .font(.title2)
+                Text(posologia)
+                    .font(.callout)
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(20)
-            .foregroundColor(.black)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .stroke(Color.black, lineWidth: 1)
-        )
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
-        
+        .padding(.bottom,14)
+    }
+    
+    fileprivate func botaoConfirmar() -> some View {
+        return Button(action: {}) {
+            Image(systemName: "checkmark")
+                .font(.title2)
+                .frame(width: 57, height: 57)
+                .background(Color("PreviewGreen"))
+        }
+        .clipShape(Circle())
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    fileprivate func listaInstrucoes() -> some View {
+        return HStack {
+            ForEach(intrucoes, id: \.self) { instrucao in
+                ConditionView(amount: 0, image: instrucao.getImage())
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            ZStack(alignment: .topLeading) {
+                Image(systemName: "speaker.wave.3.fill")
+                    .font(.title2)
+                    .offset(x: 22, y: 6)
+                    .zIndex(10)
+                
+                VStack(spacing: 0) {
+                    VStack(spacing: 0) {
+                        Text(hora)
+                            .font(.headline)
+                            .padding(8)
+                        
+                        VStack(spacing: 0) {
+                            VStack(spacing: 18) {
+                                detalhesRemedio()
+                                
+                                if !intrucoes.isEmpty {
+                                    listaInstrucoes()
+                                }
+                            }
+                            .padding(13)
+                        }
+                        .background(Color.white)
+                        .cornerRadius(20, corners: [.topLeft, .topRight])
+                    }
+                    .background(Color("PreviewGreen"))
+                    .cornerRadius(20, corners: [.topLeft, .topRight])
+                    
+                }
+                .cornerRadius(20, corners: [.bottomLeft,.bottomRight])
+            }
+            .onTapGesture {
+                /* TODO: Siri falar informações do card */
+            }
+            
+            botaoConfirmar()
+            .offset(x: 17, y: 112)
+        }
+        .padding(.leading, 14)
+        .padding(.trailing, 20)
+        .shadow(color: .black.opacity(0.1), radius: 17, x: 0, y: 8)
     }
 }
 
 struct ScannerCheckModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ScannerCheckModalView(modalShowing: .constant(true))
+        ScannerCheckModalView(
+            hora: "10:00",
+            nome: "Dipirona",
+            intrucoes: [
+                .jejum,
+                .agua,
+                .aoAcordar,
+                .bebidaAlcoolica
+            ],
+            posologia: "200mg",
+            scannerButtonEnabled: false
+        )
     }
 }

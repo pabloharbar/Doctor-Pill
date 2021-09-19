@@ -67,6 +67,7 @@ struct FeedView: View {
             MedicineScanView()
                 .colorScheme(.light)
                 .environmentObject(scanManager)
+                .environmentObject(feedManager)
         })
     }
 }

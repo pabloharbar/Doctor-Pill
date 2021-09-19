@@ -51,6 +51,7 @@ struct PreviewCardView: View {
             
             Button(action: {
                 if scannerButtonEnabled {
+                    feedManager.copyMedicineToScan(nome: nome, horario: hora, posologia: posologia, instrucoes: intrucoes)
                     feedManager.scannerCardShowing = true
                 }
             }) {
