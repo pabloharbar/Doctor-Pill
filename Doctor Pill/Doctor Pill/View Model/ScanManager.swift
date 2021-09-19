@@ -56,6 +56,11 @@ final class ScanManager: ObservableObject {
                     self.scanState = .found
                     self.medicineName = similars.last!
                     self.scannerCardShowing = true
+                } else {
+                    self.scanState = .notRegistered
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.scanState = .notFound
+                    }
                 }
             }
         }

@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Doctor_PillApp: App {
 //    @StateObject var registerManager = RegisterManager()
-    @StateObject var remediosManager = RemediosManager.fullState()
+    @StateObject var remediosManager = RemediosManager()
     
     @StateObject var tabBarManager = TabBarManager(customItemIndex: 2)
     @StateObject var feedManager = FeedManager()

@@ -108,7 +108,7 @@ struct MedicineScanView: View {
 
             scannerAim()
             
-            if scanManager.scannerCardShowing || true {
+            if scanManager.scannerCardShowing {
                 VStack {
                     Spacer()
                     ScannerCheckModalView(hora: feedManager.medicineToSearch!.horário, nome: feedManager.medicineToSearch!.nome, intrucoes: feedManager.medicineToSearch!.instrucoes, posologia: feedManager.medicineToSearch!.posologia, scannerButtonEnabled: false)
