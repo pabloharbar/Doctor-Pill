@@ -116,8 +116,14 @@ struct MedicineScanView: View {
                     }
                 VStack {
                     Spacer()
-                    ScannerCheckModalView(hora: feedManager.medicineToSearch!.horário, nome: feedManager.medicineToSearch!.nome, intrucoes: feedManager.medicineToSearch!.instrucoes, posologia: feedManager.medicineToSearch!.posologia, scannerButtonEnabled: false)
-                        .offset(y: -120)
+                    ScannerCheckModalView(remedio: feedManager.medicineToSearch!, hora: Date(), scannerButtonEnabled: false) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {                        
+                            scanManager.scannerCardShowing = false
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                    .offset(y: -120)
+
                     Spacer()
                 }
             }

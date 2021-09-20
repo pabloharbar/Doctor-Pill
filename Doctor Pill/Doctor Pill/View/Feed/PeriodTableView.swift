@@ -36,7 +36,7 @@ struct PeriodTableView: View {
             if horario.takenDate != nil {
                 TakenPreviewCard(remedio: remedio)
             } else {
-                PreviewCardView(hora: getHourString(horario.expectedDate), nome: remedio.nome, intrucoes: remedio.instrucoes, quantidade: remedio.quantidade, tipo: remedio.tipo, posologia: remedio.posologia, notas: remedio.notas, scannerButtonEnabled: true) {
+                PreviewCardView(remedio: remedio, hora: horario.expectedDate, scannerButtonEnabled: true) {
                     takeMedicine(remedio, expectedDate: horario.expectedDate)
                 }
                 .environmentObject(feedManager)

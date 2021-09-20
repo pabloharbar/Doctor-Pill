@@ -8,13 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct MedicineSearch {
-    var nome: String
-    var horário: String
-    var posologia: String
-    var instrucoes: [Instrucoes]
-}
-
 struct TakenDate: Codable, Equatable {
     let expectedDate: Date
     var takenDate: Date?
@@ -27,7 +20,9 @@ struct TakenDate: Codable, Equatable {
 final class FeedManager: ObservableObject {
     @Published var daySelected: DiasDaSemana
     @Published var scannerCardShowing: Bool
-    @Published var medicineToSearch: MedicineSearch?
+    @Published var medicineToSearch: Remedio?
+    @Published var medicineToDate: Date
+    @Published var medicineOnClick: () -> Void
 
     @Published var remediosTomados: [Date: [Remedio: [TakenDate]]]
     
@@ -37,10 +32,14 @@ final class FeedManager: ObservableObject {
         self.daySelected = DiasDaSemana.init(rawValue: Calendar.current.component(.weekday, from: now) - 1)! //enum começa em 0
         self.scannerCardShowing = false
         self.remediosTomados = UserDefaultsWrapper.fetchRemediosTomados() ?? [Date: [Remedio: [TakenDate]]]()
+        self.medicineToDate = Date()
+        self.medicineOnClick = {}
     }
     
-    func copyMedicineToScan(nome: String, horario: String, posologia: String, instrucoes: [Instrucoes]) {
-        medicineToSearch = MedicineSearch(nome: nome, horário: horario, posologia: posologia, instrucoes: instrucoes)
+    func copyMedicineToScan(remedio: Remedio, hora: Date, onCheck: @escaping () -> Void) {
+        medicineToSearch = remedio
+        medicineToDate = hora
+        medicineOnClick = onCheck
     }
     
     func createDateLabel() -> String {

@@ -8,22 +8,27 @@
 import SwiftUI
 
 struct ScannerCheckModalView: View {
-    var hora: String
-    var nome: String
-    var intrucoes: [Instrucoes]
-    var posologia: String
+    var remedio: Remedio
+    var hora: Date
     let scannerButtonEnabled: Bool
+    var onCheck: () -> Void = {}
     @EnvironmentObject var feedManager: FeedManager
     
     var speechManager = SpeechManager()
+    
+    func getHourString(_ date: Date) -> String {
+        let hour = Calendar.current.component(.hour, from: date)
+        let minute = Calendar.current.component(.minute, from: date)
+        return "\(hour):\(minute)"
+    }
     
     fileprivate func detalhesRemedio() -> some View {
         return HStack(spacing: 12) {
             Circle().frame(width: 50, height: 50)
             VStack(alignment: .leading, spacing: 4) {
-                Text(nome)
+                Text(remedio.nome)
                     .font(.title2)
-                Text(posologia)
+                Text(remedio.posologia)
                     .font(.callout)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -31,8 +36,14 @@ struct ScannerCheckModalView: View {
         .padding(.bottom,14)
     }
     
+    fileprivate func onClick() {
+        feedManager.medicineOnClick()
+        onCheck()
+//        feedManager.takeMedicine(remedio, expectedDate: Date())
+    }
+    
     fileprivate func botaoConfirmar() -> some View {
-        return Button(action: {}) {
+        return Button(action: onClick) {
             Image(systemName: "checkmark")
                 .font(.title2)
                 .frame(width: 57, height: 57)
@@ -44,7 +55,7 @@ struct ScannerCheckModalView: View {
     
     fileprivate func listaInstrucoes() -> some View {
         return HStack {
-            ForEach(intrucoes, id: \.self) { instrucao in
+            ForEach(remedio.instrucoes, id: \.self) { instrucao in
                 ConditionView(amount: 0, image: instrucao.getImage())
             }
         }
@@ -61,7 +72,7 @@ struct ScannerCheckModalView: View {
                 
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {
-                        Text(hora)
+                        Text(getHourString(hora))
                             .font(.headline)
                             .padding(8)
                         
@@ -69,7 +80,7 @@ struct ScannerCheckModalView: View {
                             VStack(spacing: 18) {
                                 detalhesRemedio()
                                 
-                                if !intrucoes.isEmpty {
+                                if !remedio.instrucoes.isEmpty {
                                     listaInstrucoes()
                                 }
                             }
@@ -85,7 +96,7 @@ struct ScannerCheckModalView: View {
                 .cornerRadius(20, corners: [.bottomLeft,.bottomRight])
             }
             .onTapGesture {
-                speechManager.speak(text: "Achou o remédio \(nome)! O horário de tomar esse remédio é \(hora). Você pode marcar como tomado apertando o cheque ao lado.")
+                speechManager.speak(text: "Achou o remédio \(remedio.nome)! O horário de tomar esse remédio é \(getHourString(hora)). Você pode marcar como tomado apertando o cheque ao lado.")
             }
             
             botaoConfirmar()
@@ -100,15 +111,8 @@ struct ScannerCheckModalView: View {
 struct ScannerCheckModalView_Previews: PreviewProvider {
     static var previews: some View {
         ScannerCheckModalView(
-            hora: "10:00",
-            nome: "Dipirona",
-            intrucoes: [
-                .jejum,
-                .agua,
-                .aoAcordar,
-                .bebidaAlcoolica
-            ],
-            posologia: "200mg",
+            remedio: Remedio(nome: "Flancox", posologia: "500mg", quantidade: 4, tipo: .comprimido, formato: .capsula, vezesAoDia: 3, continuidade: (duracao: 4, frequencia: .dias), horarios: [Date()], instrucoes: [.agua, .aoAcordar], notas: "Super teste para médicos e suas observações muito úteis para tomar o remédio"),
+            hora: Date(),
             scannerButtonEnabled: false
         )
     }

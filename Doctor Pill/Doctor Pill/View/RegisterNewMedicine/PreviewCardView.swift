@@ -19,17 +19,24 @@ struct CustomDivider: View {
 }
 
 struct PreviewCardView: View {
-    var hora: String
-    var nome: String
-    var intrucoes: [Instrucoes]
-    var quantidade: Double
-    var tipo: TipoRemedio
-    var posologia: String
-    var notas: String
+    var remedio: Remedio
+    var hora: Date
+//    var nome: String
+//    var intrucoes: [Instrucoes]
+//    var quantidade: Double
+//    var tipo: TipoRemedio
+//    var posologia: String
+//    var notas: String
     let scannerButtonEnabled: Bool
     var onCheck: () -> Void = {}
     var speechManager = SpeechManager()
     @EnvironmentObject var feedManager: FeedManager
+    
+    func getHourString(_ date: Date) -> String {
+        let hour = Calendar.current.component(.hour, from: date)
+        let minute = Calendar.current.component(.minute, from: date)
+        return "\(hour):\(minute)"
+    }
     
     fileprivate func detalhesRemedio() -> some View {
         return HStack(spacing: 12) {
@@ -38,16 +45,16 @@ struct PreviewCardView: View {
                 .frame(width: 50, height: 50)
                 .overlay(Circle().stroke(lineWidth: 1))
             VStack(alignment: .leading, spacing: 4) {
-                Text(nome)
+                Text(remedio.nome)
                     .font(.title2)
                 HStack {
-                    Text("\(quantidade.formatNumber()) \(tipo.rawValue.lowercased())\(quantidade > 1 ? "s" : ""), \(posologia)")
+                    Text("\(remedio.quantidade.formatNumber()) \(remedio.tipo.rawValue.lowercased())\(remedio.quantidade > 1 ? "s" : ""), \(remedio.posologia)")
                 }
                 .font(.callout)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.bottom, (notas.isEmpty && intrucoes.isEmpty) ? 120 : 14)
+        .padding(.bottom, (remedio.notas.isEmpty && remedio.instrucoes.isEmpty) ? 120 : 14)
     }
     
     fileprivate func botaoScanner() -> some View {
@@ -56,7 +63,7 @@ struct PreviewCardView: View {
             
             Button(action: {
                 if scannerButtonEnabled {
-                    feedManager.copyMedicineToScan(nome: nome, horario: hora, posologia: posologia, instrucoes: intrucoes)
+                    feedManager.copyMedicineToScan(remedio: remedio, hora: hora, onCheck: onCheck)
                     feedManager.scannerCardShowing = true
                 }
             }) {
@@ -78,7 +85,7 @@ struct PreviewCardView: View {
             Text("Observações de médico.")
                 .font(.footnote)
             
-            Text(notas)
+            Text(remedio.notas)
                 .font(.body)
         }
         .frame(maxWidth: .infinity)
@@ -97,7 +104,7 @@ struct PreviewCardView: View {
     
     fileprivate func listaInstrucoes() -> some View {
         return HStack {
-            ForEach(intrucoes, id: \.self) { instrucao in
+            ForEach(remedio.instrucoes, id: \.self) { instrucao in
                 ConditionView(amount: 0, image: instrucao.getImage())
             }
         }
@@ -114,7 +121,7 @@ struct PreviewCardView: View {
                 
                 VStack(spacing: 0) {
                     VStack(spacing: 0) {
-                        Text(hora)
+                        Text(remedio.horarios.first != nil ? getHourString(hora) : "Horário")
                             .font(.headline)
                             .padding(8)
                         
@@ -122,11 +129,11 @@ struct PreviewCardView: View {
                             VStack(spacing: 18) {
                                 detalhesRemedio()
                                 
-                                if !intrucoes.isEmpty {
+                                if !remedio.instrucoes.isEmpty {
                                     listaInstrucoes()
                                 }
                                 
-                                if !notas.isEmpty {
+                                if !remedio.notas.isEmpty {
                                     notasMedico()
                                 }
                             }
@@ -142,7 +149,7 @@ struct PreviewCardView: View {
                 }
             }
             .onTapGesture {
-                speechManager.speak(text: "Você deve tomar \(quantidade.formatNumber())  \(quantidade > 1 ? "\(tipo.rawValue)s" : "\(tipo.rawValue)") do remédio \(nome) às \(hora). Observações do médico: \(notas)")
+                speechManager.speak(text: "Você deve tomar \(remedio.quantidade.formatNumber())  \(remedio.quantidade > 1 ? "\(remedio.tipo.rawValue)s" : "\(remedio.tipo.rawValue)") do remédio \(remedio.nome) às \(getHourString(hora)). Observações do médico: \(remedio.notas)")
             }
             
             botaoConfirmar()
@@ -157,16 +164,17 @@ struct PreviewCardView: View {
 struct PreviewCardView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewCardView(
-            hora: "10:00",
-            nome: "Dipirona",
-            intrucoes: [
-                .jejum,
-                .agua,
-                .aoAcordar,
-                .bebidaAlcoolica
-            ], quantidade: 1, tipo: .comprimido,
-            posologia: "200mg",
-            notas: "Lorem ipsum dolor sit amet, consectetur adi",
+            remedio: Remedio(nome: "Flancox", posologia: "500mg", quantidade: 4, tipo: .comprimido, formato: .capsula, vezesAoDia: 3, continuidade: (duracao: 4, frequencia: .dias), horarios: [Date()], instrucoes: [.agua, .aoAcordar], notas: "Super teste para médicos e suas observações muito úteis para tomar o remédio"),
+            hora: Date(),
+//            nome: "Dipirona",
+//            intrucoes: [
+//                .jejum,
+//                .agua,
+//                .aoAcordar,
+//                .bebidaAlcoolica
+//            ], quantidade: 1, tipo: .comprimido,
+//            posologia: "200mg",
+//            notas: "Lorem ipsum dolor sit amet, consectetur adi",
             scannerButtonEnabled: false
         )
     }
