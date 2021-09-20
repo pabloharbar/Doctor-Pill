@@ -25,6 +25,7 @@ struct PeriodTableView: View {
     
     func takeMedicine(_ medicine: Remedio, expectedDate: Date) {
         feedManager.takeMedicine(medicine, expectedDate: expectedDate)
+        remediosHoje = feedManager.remediosHojePorTurno()
     }
     
     fileprivate func createPreviewCards(_ remedios: [(remedio: Remedio, horario: TakenDate)]) -> some View {
@@ -102,10 +103,6 @@ struct PeriodTableView: View {
         .onChange(of: remediosManager.remedios) { _ in
             print("onChange")
             fetchData()
-        }
-        .onChange(of: feedManager.remediosTomados) { _ in
-            print("onChange remedioTomados")
-            remediosHoje = feedManager.remediosHojePorTurno()
         }
     }
 

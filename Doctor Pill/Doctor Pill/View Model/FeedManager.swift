@@ -154,9 +154,6 @@ final class FeedManager: ObservableObject {
                 }
             }
         }
-        print(manha)
-        print(tarde)
-        print(noite)
         
         return [
             .manha: manha,
