@@ -22,10 +22,13 @@ struct PreviewCardView: View {
     var hora: String
     var nome: String
     var intrucoes: [Instrucoes]
+    var quantidade: Double
+    var tipo: TipoRemedio
     var posologia: String
     var notas: String
     let scannerButtonEnabled: Bool
     var onCheck: () -> Void = {}
+    var speechManager = SpeechManager()
     @EnvironmentObject var feedManager: FeedManager
     
     fileprivate func detalhesRemedio() -> some View {
@@ -37,8 +40,10 @@ struct PreviewCardView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(nome)
                     .font(.title2)
-                Text(posologia)
-                    .font(.callout)
+                HStack {
+                    Text("\(quantidade.formatNumber()) \(tipo.rawValue.lowercased())\(quantidade > 1 ? "s" : ""), \(posologia)")
+                }
+                .font(.callout)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -137,7 +142,7 @@ struct PreviewCardView: View {
                 }
             }
             .onTapGesture {
-                /* TODO: Siri falar informações do card */
+                speechManager.speak(text: "Você deve tomar \(quantidade.formatNumber())  \(quantidade > 1 ? "\(tipo.rawValue)s" : "\(tipo.rawValue)") do remédio \(nome) às \(hora). Observações do médico: \(notas)")
             }
             
             botaoConfirmar()
@@ -159,7 +164,7 @@ struct PreviewCardView_Previews: PreviewProvider {
                 .agua,
                 .aoAcordar,
                 .bebidaAlcoolica
-            ],
+            ], quantidade: 1, tipo: .comprimido,
             posologia: "200mg",
             notas: "Lorem ipsum dolor sit amet, consectetur adi",
             scannerButtonEnabled: false

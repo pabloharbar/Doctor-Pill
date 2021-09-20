@@ -49,6 +49,7 @@ final class ScanManager: ObservableObject {
                 } else {
                     self.scanState = .found
                 }
+                
                 self.medicineName = similars.last!
             }
         }

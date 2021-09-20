@@ -101,7 +101,7 @@ struct ScanView: View {
                 HStack {
                     HStack {
                         Button(action: {
-                            let textRead = scanManager.scanState == .notFound ? "Continue escaneando até encontrar um remédio" : scanManager.scanState == .found ? "O remédio \(scanManager.medicineName) está registrado na sua rotina" : "O remédio \(scanManager.medicineName)"
+                            let textRead = scanManager.scanState == .notFound ? "Continue escaneando até encontrar um remédio" : scanManager.scanState == .found ? "O remédio \(scanManager.medicineName) está registrado na sua rotina" : "O remédio \(scanManager.medicineName) não está registrado na sua rotina!"
                             speechManager.speak(text: textRead)
                         }, label: {
                             Image(systemName: "speaker.wave.3.fill")
