@@ -12,23 +12,28 @@ final class ScanManager: ObservableObject {
     @Published var recognizedText: String {
         didSet {
             if recognizedText.last == "©" || recognizedText.last == "℗" || recognizedText.last == "®" || recognizedText.last == "™" {
-                recognizedText.dropLast()
+                let cleanText = recognizedText.dropLast()
+                recognizedText = String(cleanText)
+                
             }
         }
     }
-    @Published var hasFoundCorrect: Bool
+//    @Published var hasFoundCorrect: Bool
     @Published var scannerCardShowing: Bool
     @Published var medicineName: String
+    
+    var remediosCadastrados: [Remedio]
     
     let apiWrapper = APIWrapper()
     
     init() {
         self.scanState = .notFound
         self.recognizedText = ""
-        self.hasFoundCorrect = false
+//        self.hasFoundCorrect = false
         
         self.medicineName = ""
         self.scannerCardShowing = false
+        self.remediosCadastrados = UserDefaultsWrapper.fetchRemedios() ?? []
     }
     
     func displayResult() {
@@ -36,11 +41,15 @@ final class ScanManager: ObservableObject {
         apiWrapper.decodeSimilars(recognizedText: self.recognizedText) { similars in
             print(similars)
             if !similars.isEmpty {
-                //É o remedio certo
-                self.hasFoundCorrect = true
-                self.scanState = .found
+                let remediosFiltrados = self.remediosCadastrados.filter { remedio in
+                    return similars.contains(remedio.nome)
+                }
+                if remediosFiltrados.isEmpty {
+                    self.scanState = .notRegistered
+                } else {
+                    self.scanState = .found
+                }
                 self.medicineName = similars.last!
-                self.scannerCardShowing = true
             }
         }
     }
@@ -52,7 +61,7 @@ final class ScanManager: ObservableObject {
             if !similars.isEmpty {
                 //É o remedio certo
                 if similars.contains(nome) {
-                    self.hasFoundCorrect = true
+//                    self.hasFoundCorrect = true
                     self.scanState = .found
                     self.medicineName = similars.last!
                     self.scannerCardShowing = true

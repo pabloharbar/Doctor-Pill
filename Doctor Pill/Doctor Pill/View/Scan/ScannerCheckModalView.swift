@@ -15,6 +15,8 @@ struct ScannerCheckModalView: View {
     let scannerButtonEnabled: Bool
     @EnvironmentObject var feedManager: FeedManager
     
+    var speechManager = SpeechManager()
+    
     fileprivate func detalhesRemedio() -> some View {
         return HStack(spacing: 12) {
             Circle().frame(width: 50, height: 50)
@@ -83,7 +85,7 @@ struct ScannerCheckModalView: View {
                 .cornerRadius(20, corners: [.bottomLeft,.bottomRight])
             }
             .onTapGesture {
-                /* TODO: Siri falar informações do card */
+                speechManager.speak(text: "Achou o remédio \(nome)! O horário de tomar esse remédio é \(hora). Você pode marcar como tomado apertando o cheque ao lado.")
             }
             
             botaoConfirmar()

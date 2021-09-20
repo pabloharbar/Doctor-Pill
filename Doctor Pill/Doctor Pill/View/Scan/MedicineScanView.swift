@@ -109,6 +109,11 @@ struct MedicineScanView: View {
             scannerAim()
             
             if scanManager.scannerCardShowing {
+                Rectangle().frame(maxWidth: .infinity,maxHeight: .infinity).background(Color.black).opacity(0.1)
+                    .onTapGesture {
+                        scanManager.scannerCardShowing = false
+                        scanManager.scanState = .notFound
+                    }
                 VStack {
                     Spacer()
                     ScannerCheckModalView(hora: feedManager.medicineToSearch!.horário, nome: feedManager.medicineToSearch!.nome, intrucoes: feedManager.medicineToSearch!.instrucoes, posologia: feedManager.medicineToSearch!.posologia, scannerButtonEnabled: false)
@@ -117,11 +122,6 @@ struct MedicineScanView: View {
                 }
             }
             
-        }
-        .foregroundColor(.black)
-        .onTapGesture {
-            scanManager.scanState = .notFound
-            scanManager.scannerCardShowing = false
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
