@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  database_dr_pill:
+    image: postgres
+    container_name: database_dr_pill
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=drpill
+      - POSTGRES_DB=drpill
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    build: .
+    container_name: drpill
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - database_dr_pill
+    depends_on:
+      - database_dr_pill 
+
+volumes:
+  pgdata:
+    driver: local
