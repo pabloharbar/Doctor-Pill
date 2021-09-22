@@ -47,14 +47,18 @@ struct PreviewCardView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(remedio.nome)
                     .font(.title2)
-                HStack {
-                    Text("\(remedio.quantidade.formatNumber()) \(remedio.tipo.rawValue.lowercased())\(remedio.quantidade > 1 ? "s" : ""), \(remedio.posologia)")
+                HStack(spacing: 0) {
+                    if remedio.quantidade > 0 {
+                        Text("\(remedio.quantidade.formatNumber()) \(remedio.tipo.rawValue.lowercased())\(remedio.quantidade > 1 ? "s" : ""), ")
+                    }
+                    
+                    Text("\(remedio.posologia)")
                 }
                 .font(.callout)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.bottom, (remedio.notas.isEmpty && remedio.instrucoes.isEmpty) ? 120 : 14)
+        .padding(.bottom, (remedio.notas.isEmpty && remedio.instrucoes.isEmpty && remedio.quantidade <= 0) ? 110 : 14)
     }
     
     fileprivate func botaoScanner() -> some View {
@@ -103,12 +107,25 @@ struct PreviewCardView: View {
     }
     
     fileprivate func listaInstrucoes() -> some View {
-        return HStack {
-            ForEach(remedio.instrucoes, id: \.self) { instrucao in
-                ConditionView(amount: 0, image: instrucao.getImage())
+        return ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                let quantidadeAsInt = Int(remedio.quantidade.rounded(.towardZero))
+                if remedio.tipo == .comprimido && Double(quantidadeAsInt) != remedio.quantidade {
+                    if quantidadeAsInt != 0 {
+                        ConditionView(amount: quantidadeAsInt, image: remedio.tipo.getImage())
+                    }
+                    ConditionView(amount: 1, image: TipoRemedio.meioComprimido.getImage())
+                } else {   
+                    ConditionView(amount: quantidadeAsInt, image: remedio.tipo.getImage())
+                }
+                
+                ForEach(remedio.instrucoes, id: \.self) { instrucao in
+                    ConditionView(amount: 0, image: instrucao.getImage())
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(6)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var body: some View {
@@ -129,7 +146,7 @@ struct PreviewCardView: View {
                             VStack(spacing: 18) {
                                 detalhesRemedio()
                                 
-                                if !remedio.instrucoes.isEmpty {
+                                if !remedio.instrucoes.isEmpty || remedio.quantidade > 0 {
                                     listaInstrucoes()
                                 }
                                 

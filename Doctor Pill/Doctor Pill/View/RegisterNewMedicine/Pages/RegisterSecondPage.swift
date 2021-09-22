@@ -21,17 +21,17 @@ struct RegisterSecondPage: View {
             }
             Divider()
             HStack(spacing: 5) {
-                Picker(selection: $registerManager.quantidade, label: Text("Quantidade"), content: {
+                Picker(selection: $registerManager.quantidade, label: Text("Quantidade")) {
                     ForEach(Array(stride(from: 0.5, through: 10, by: 0.5)), id: \.self) { num in
                         Text(num.formatNumber())
                             .tag(registerManager.tipo == .meioComprimido ? Float(num) / 2 : Float(num))
                     }
-                })
+                }
                 .frame(width: 40, height: 50)
                 .clipped()
                 
                 Picker(selection: $registerManager.tipo, label: Text("Tipo"), content: {
-                    ForEach(TipoRemedio.allCases, id:\.self) { formato in
+                    ForEach(TipoRemedio.allCasesWithoutHalfTablet(), id:\.self) { formato in
                         Text(formato.rawValue)
                     }
                 })

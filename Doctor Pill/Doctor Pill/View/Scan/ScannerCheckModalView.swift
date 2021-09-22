@@ -54,12 +54,25 @@ struct ScannerCheckModalView: View {
     }
     
     fileprivate func listaInstrucoes() -> some View {
-        return HStack {
-            ForEach(remedio.instrucoes, id: \.self) { instrucao in
-                ConditionView(amount: 0, image: instrucao.getImage())
+        return ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                let quantidadeAsInt = Int(remedio.quantidade.rounded(.towardZero))
+                if remedio.tipo == .comprimido && Double(quantidadeAsInt) != remedio.quantidade {
+                    if quantidadeAsInt != 0 {
+                        ConditionView(amount: quantidadeAsInt, image: remedio.tipo.getImage())
+                    }
+                    ConditionView(amount: 1, image: TipoRemedio.meioComprimido.getImage())
+                } else {
+                    ConditionView(amount: quantidadeAsInt, image: remedio.tipo.getImage())
+                }
+                
+                ForEach(remedio.instrucoes, id: \.self) { instrucao in
+                    ConditionView(amount: 0, image: instrucao.getImage())
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(6)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var body: some View {

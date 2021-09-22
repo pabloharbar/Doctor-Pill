@@ -21,12 +21,11 @@ enum TipoRemedio: String, Codable, CaseIterable {
     case sabaoLiquido = "Sabão Líquido"
     case spray = "Spray"
     case sabaoBarra = "Sabão em Barra"
-    case gotas = "Gotas"
+    case gotas = "Gota"
     case xarope = "Xarope"
     
-    static func allCasesWithouHalfTablet() -> [TipoRemedio] {
-        var cases = TipoRemedio.allCases
-        cases.removeAll { $0 == .meioComprimido }
+    static func allCasesWithoutHalfTablet() -> [TipoRemedio] {
+        let cases = TipoRemedio.allCases.filter { $0 != .meioComprimido }
 
         return cases
     }

@@ -52,7 +52,7 @@ final class RegisterManager: ObservableObject {
         self.nome = ""
         self.posologia = ""
 //        self.tratamento = Tratamento(remedios: [], proposito: "")
-        self.quantidade = 1.0
+        self.quantidade = 0
         self.tipo = .comprimido
         self.vezesAoDia = 1
         self.formato = .redondo
