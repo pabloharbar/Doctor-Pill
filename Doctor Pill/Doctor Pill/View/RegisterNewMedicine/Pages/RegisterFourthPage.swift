@@ -1,5 +1,5 @@
 //
-//  RegisterFuorthPage.swift
+//  RegisterFourthPage.swift
 //  Doctor Pill
 //
 //  Created by Thiago Medeiros on 17/09/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegisterFuorthPage: View {
+struct RegisterFourthPage: View {
     @EnvironmentObject var registerManager: RegisterManager
     
     var body: some View {
@@ -36,9 +36,9 @@ struct RegisterFuorthPage: View {
     }
 }
 
-struct RegisterFuorthPage_Previews: PreviewProvider {
+struct RegisterFourthPage_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterFuorthPage()
+        RegisterFourthPage()
             .environmentObject(RegisterManager())
     }
 }

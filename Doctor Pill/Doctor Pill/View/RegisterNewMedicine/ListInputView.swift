@@ -31,7 +31,7 @@ struct ListInputView: View {
             case 3:
                 RegisterThirdPage()
             case 4:
-                RegisterFuorthPage()
+                RegisterFourthPage()
             default:
                 defaultPage()
             }

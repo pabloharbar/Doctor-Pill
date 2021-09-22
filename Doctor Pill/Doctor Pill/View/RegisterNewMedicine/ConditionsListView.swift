@@ -15,7 +15,7 @@ struct ConditionsListView: View {
             ForEach(Instrucoes.allCases, id: \.self) { condition in
                 Button(action: {
                     registerManager.manageConditionList(condition: condition)
-                }, label: {
+                }) {
                     HStack {
                         condition.getImage()
                         Text(condition.rawValue)
@@ -27,8 +27,9 @@ struct ConditionsListView: View {
                                 .foregroundColor(Color("CheckmarkRed"))
                         }
                     }
+                    .contentShape(Rectangle())
                     .padding(.horizontal)
-                })
+                }
                 .buttonStyle(PlainButtonStyle())
                 Divider()
             }

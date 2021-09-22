@@ -54,7 +54,7 @@
 		AF4FD59826F553D300C9AC43 /* RegisterFirstPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FD59726F553D300C9AC43 /* RegisterFirstPage.swift */; };
 		AF4FD59A26F554C500C9AC43 /* RegisterSecondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FD59926F554C500C9AC43 /* RegisterSecondPage.swift */; };
 		AF4FD59C26F5554500C9AC43 /* RegisterThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FD59B26F5554500C9AC43 /* RegisterThirdPage.swift */; };
-		AF4FD59E26F5558300C9AC43 /* RegisterFuorthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FD59D26F5558300C9AC43 /* RegisterFuorthPage.swift */; };
+		AF4FD59E26F5558300C9AC43 /* RegisterFourthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FD59D26F5558300C9AC43 /* RegisterFourthPage.swift */; };
 		AF4FD5A126F57EEE00C9AC43 /* Teste.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4FD5A026F57EEE00C9AC43 /* Teste.swift */; };
 		AF8699A326F7EA4400BC4CB6 /* TakenPreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8699A226F7EA4400BC4CB6 /* TakenPreviewCard.swift */; };
 		AFCA34D026F2A55F004E89BD /* ConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCA34CF26F2A55F004E89BD /* ConditionView.swift */; };
@@ -111,7 +111,7 @@
 		AF4FD59726F553D300C9AC43 /* RegisterFirstPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirstPage.swift; sourceTree = "<group>"; };
 		AF4FD59926F554C500C9AC43 /* RegisterSecondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSecondPage.swift; sourceTree = "<group>"; };
 		AF4FD59B26F5554500C9AC43 /* RegisterThirdPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterThirdPage.swift; sourceTree = "<group>"; };
-		AF4FD59D26F5558300C9AC43 /* RegisterFuorthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFuorthPage.swift; sourceTree = "<group>"; };
+		AF4FD59D26F5558300C9AC43 /* RegisterFourthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFourthPage.swift; sourceTree = "<group>"; };
 		AF4FD5A026F57EEE00C9AC43 /* Teste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teste.swift; sourceTree = "<group>"; };
 		AF8699A226F7EA4400BC4CB6 /* TakenPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakenPreviewCard.swift; sourceTree = "<group>"; };
 		AFCA34CF26F2A55F004E89BD /* ConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionView.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 				AF4FD59726F553D300C9AC43 /* RegisterFirstPage.swift */,
 				AF4FD59926F554C500C9AC43 /* RegisterSecondPage.swift */,
 				AF4FD59B26F5554500C9AC43 /* RegisterThirdPage.swift */,
-				AF4FD59D26F5558300C9AC43 /* RegisterFuorthPage.swift */,
+				AF4FD59D26F5558300C9AC43 /* RegisterFourthPage.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 				5B14264626F1579500C50851 /* PeriodTableView.swift in Sources */,
 				5B4B796B26F24FCC0093EDC5 /* PreviewCardView.swift in Sources */,
 				5B3D07DC26EA84CA00A2BA24 /* APIResponseModel.swift in Sources */,
-				AF4FD59E26F5558300C9AC43 /* RegisterFuorthPage.swift in Sources */,
+				AF4FD59E26F5558300C9AC43 /* RegisterFourthPage.swift in Sources */,
 				5BEAC26026E54CAB00034DE6 /* RemedioModel.swift in Sources */,
 				5BCF3F3326EBDA3500CD3B48 /* TabBarManager.swift in Sources */,
 				5B79182526E6DB6200720745 /* ScanView.swift in Sources */,

@@ -87,6 +87,15 @@ final class RegisterManager: ObservableObject {
     
     func manageConditionList(condition: Instrucoes) {
         if !self.instrucoes.contains(condition) {
+            let instructionsWithSameCategory = self.instrucoes.filter {
+                $0.getCategory() == condition.getCategory()
+            }
+            
+            if !instructionsWithSameCategory.isEmpty {
+                instructionsWithSameCategory.forEach { instruction in
+                    self.instrucoes.removeAll { $0 == instruction }
+                }
+            }
             self.instrucoes.append(condition)
         } else {
             let index = self.instrucoes.firstIndex(of: condition)!

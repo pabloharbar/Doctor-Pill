@@ -67,18 +67,25 @@ enum TipoRemedio: String, Codable, CaseIterable {
 
 enum Instrucoes: String, Codable, CaseIterable {
     case jejum = "Em jejum"
+    case jejumLiquido = "Em jejum de líquidos"
     case antesRefeicao = "Antes da refeição"
     case duranteRefeicao = "Durante a refeição"
     case depoisRefeicao = "Depois da refeição"
     case aguaQuente = "Ingerir com água quente"
     case agua = "Ingerir com água"
     case efervescente = "Colocar na água (efervescente)"
-    case bebidaAlcoolica = "Não ingerir bebidas alcoólicas"
     case sublingual = "Sublingual"
     case inlacao = "Inalação"
+    case bebidaAlcoolica = "Não ingerir bebidas alcoólicas"
     case aoAcordar = "Logo ao acordar"
     case antesDormir = "Antes de dormir"
-    case jejumLiquido = "Em jejum de líquidos"
+    
+    enum Categoria {
+        case alimentacao
+        case modoIngestao
+        case alcool
+        case repouso
+    }
     
     func getImage() -> Image {
         switch self {
@@ -108,6 +115,37 @@ enum Instrucoes: String, Codable, CaseIterable {
             return Image("instrucao_antes_dormir_mini")
         case .jejumLiquido:
             return Image("instrucao_jejum_liquido")
+        }
+    }
+    
+    func getCategory() -> Categoria {
+        switch self {
+        case .jejum:
+            return .alimentacao
+        case .antesRefeicao:
+            return .alimentacao
+        case .duranteRefeicao:
+            return .alimentacao
+        case .depoisRefeicao:
+            return .alimentacao
+        case .aguaQuente:
+            return .modoIngestao
+        case .agua:
+            return .modoIngestao
+        case .efervescente:
+            return .modoIngestao
+        case .bebidaAlcoolica:
+            return .alcool
+        case .sublingual:
+            return .modoIngestao
+        case .inlacao:
+            return .modoIngestao
+        case .aoAcordar:
+            return .repouso
+        case .antesDormir:
+            return .repouso
+        case .jejumLiquido:
+            return .alimentacao
         }
     }
 }
